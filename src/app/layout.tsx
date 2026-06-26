@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Manrope } from "next/font/google";
+import { Be_Vietnam_Pro, Inter, Manrope } from "next/font/google";
+import { SiteFooter } from "@/components/layout/site-footer";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -12,6 +13,13 @@ const beVietnam = Be_Vietnam_Pro({
   variable: "--font-be-vietnam",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -29,9 +37,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${beVietnam.variable} h-full scroll-smooth antialiased`}
+      className={`${manrope.variable} ${beVietnam.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }
