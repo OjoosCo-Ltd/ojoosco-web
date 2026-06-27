@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FooterSocialLinks } from "../footer-social-links";
+import { SiteHeader } from "@/components/layout/site-header";
+import { ConversationForm } from "./conversation-form";
 
 export const metadata: Metadata = {
   title: "Partner With Us | Ojoosco",
   description:
     "Partner with Ojoosco to build meaningful human-centred experiences powered by technology.",
 };
-
-const navItems = [
-  ["Home", "/"],
-  ["About", "/about-us"],
-  ["Ventures", "/ventures"],
-  ["Investment", "/investment"],
-  ["Contact", "/contact-us"],
-] as const;
 
 const partnerCards = [
   {
@@ -40,33 +33,6 @@ const partnerCards = [
   },
 ];
 
-const footerGroups = [
-  {
-    title: "Navigation",
-    links: [
-      ["Home", "/"],
-      ["About", "/about-us"],
-      ["Ventures", "/ventures"],
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      ["Investment", "/investment"],
-      ["Partner With Us", "/partner-with-us"],
-      ["Contact", "/contact-us"],
-      ["Explore Opportunities", "/explore-opportunities#opportunities"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy-policy"],
-      ["Terms of Service", "#"],
-    ],
-  },
-];
-
 export default function PartnerWithUs() {
   return (
     <main className="min-h-screen bg-white text-[#191c1e]">
@@ -76,7 +42,6 @@ export default function PartnerWithUs() {
       <Conversation />
       <FeaturedVenture />
       <ClosingCta />
-      <Footer />
     </main>
   );
 }
@@ -85,7 +50,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-white px-5 pb-20 pt-8 md:px-20 md:pb-[120px]">
       <div className="absolute bottom-4 right-[-80px] top-1/4 w-[600px] rounded-full bg-[#005069]/10 blur-[60px]" />
-      <PartnerHeader />
+      <SiteHeader variant="inner" />
 
       <div className="relative mx-auto mt-[120px] grid max-w-[1280px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
@@ -134,36 +99,6 @@ function Hero() {
   );
 }
 
-function PartnerHeader() {
-  return (
-    <header className="relative z-10 mx-auto max-w-[1196px] rounded-[20px] bg-[#3a5153] px-4 py-4 shadow-[0_18px_45px_rgba(25,28,30,0.08)] md:px-10 md:py-6">
-      <div className="flex h-[52px] items-center justify-between">
-        <Link href="/" className="relative block h-[34px] w-[125px]">
-          <Image
-            src="/figma-assets/logo-mark-b.svg"
-            alt="Ojoosco"
-            fill
-            priority
-            className="object-contain"
-          />
-        </Link>
-        <nav className="hidden items-center gap-10 text-[14px] font-medium text-white lg:flex xl:gap-16">
-          {navItems.map(([label, href]) => (
-            <Link key={label} href={href} className="transition hover:text-[#98ff98]">
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <a
-          href="#contact"
-          className="inline-flex h-[52px] items-center justify-center rounded-xl bg-[#98ff98] px-5 text-[12px] font-extrabold uppercase tracking-[0.05em] text-[#3f484d] transition hover:bg-[#b8ffb8]"
-        >
-          Get In Touch
-        </a>
-      </div>
-    </header>
-  );
-}
 
 function Partnerships() {
   return (
@@ -236,12 +171,13 @@ function WhyOjoosco() {
           <div className="space-y-4 pt-0 sm:pt-12">
             <ImageTile
               title="Visionary growth"
-              src="/figma-assets/partner/visionary-growth.png"
+              src="/figma-assets/partner/why/visionary-growth.png"
               className="h-[320px]"
+              overlay
             />
             <div className="relative h-[240px] overflow-hidden rounded-[16px] bg-[#263844] p-8 text-white shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
               <Image
-                src="/figma-assets/partner/why-shadow-a.png"
+                src="/figma-assets/partner/why/long-term-impact.png"
                 alt=""
                 fill
                 sizes="333px"
@@ -258,15 +194,21 @@ function WhyOjoosco() {
           </div>
 
           <div className="space-y-4">
-            <div className="relative h-[240px] overflow-hidden rounded-[16px] bg-[#1f2340] p-8 text-white shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(152,255,152,0.2),transparent_28%),linear-gradient(180deg,#1c1834,#6a35a1_62%,#5c89c7)]" />
-              <div className="absolute left-1/2 top-10 size-28 -translate-x-1/2 rounded-full border border-white/25 shadow-[0_0_40px_rgba(202,231,247,0.55)]" />
+            <div className="relative h-[240px] overflow-hidden rounded-[16px] bg-[#10142e] p-8 text-white shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
+              <Image
+                src="/figma-assets/partner/why/intelligent-direction.png"
+                alt=""
+                fill
+                sizes="333px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-[#0c1030]/15" />
               <div className="relative">
                 <h3 className="font-display text-[20px]">Intelligent Direction</h3>
               </div>
             </div>
             <ImageTile
-              src="/figma-assets/partner/golden-abstract.png"
+              src="/figma-assets/partner/why/golden-waves.png"
               className="h-[320px]"
             />
           </div>
@@ -287,43 +229,7 @@ function Conversation() {
           Join us in shaping the next generation of digital experiences.
         </p>
 
-        <form className="mt-8 rounded-[24px] bg-white/70 p-8 text-left shadow-[0_25px_60px_rgba(25,28,30,0.08)] backdrop-blur-md md:p-12">
-          <div className="grid gap-x-6 gap-y-7 md:grid-cols-2">
-            <Field label="Full Name" placeholder="John Doe" />
-            <Field label="Company / Organisation" placeholder="Enter Company Name" />
-            <Field label="Email Address" placeholder="john@company.com" type="email" />
-            <label className="block">
-              <span className="mb-2 block px-2 text-[12px] font-bold text-[#3f484d]">
-                Partnership Type
-              </span>
-              <select className="h-12 w-full rounded-lg border-0 bg-white px-4 text-[14px] text-[#7b8588] outline-none ring-1 ring-transparent transition focus:ring-[#005068]">
-                <option>Select Type</option>
-                <option>Strategic Partnership</option>
-                <option>Investment Opportunity</option>
-                <option>Brand Collaboration</option>
-                <option>Media & Press</option>
-              </select>
-            </label>
-            <div className="md:col-span-2">
-              <Field label="Website or Social Link" placeholder="https://" />
-            </div>
-            <label className="block md:col-span-2">
-              <span className="mb-2 block px-2 text-[12px] font-bold text-[#3f484d]">
-                Message
-              </span>
-              <textarea
-                className="min-h-[120px] w-full resize-none rounded-lg border-0 bg-white px-4 py-3 text-[14px] text-[#191c1e] outline-none ring-1 ring-transparent transition placeholder:text-[#8f989b] focus:ring-[#005068]"
-                placeholder="Tell us about your vision..."
-              />
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="mt-8 h-14 w-full rounded-lg bg-[#005068] text-[14px] font-extrabold uppercase tracking-[0.16em] text-white shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] transition hover:bg-[#0a617a]"
-          >
-            Send Inquiry
-          </button>
-        </form>
+        <ConversationForm />
       </div>
     </section>
   );
@@ -355,42 +261,23 @@ function FeaturedVenture() {
           </Link>
         </div>
 
-        <div className="relative mx-auto h-[330px] w-full max-w-[480px] overflow-visible rounded-[30px] bg-gradient-to-br from-[#b8b9b7] to-[#797a77] md:h-[394px]">
-          <Image
-            src="/figma-assets/partner/featured-metal-b.png"
-            alt=""
-            width={260}
-            height={292}
-            className="absolute -left-10 -top-16 w-[45%] rotate-[-4deg] opacity-80"
-          />
-          <Image
-            src="/figma-assets/partner/featured-metal-a.png"
-            alt=""
-            width={220}
-            height={252}
-            className="absolute -bottom-14 -right-8 w-[40%] rotate-[8deg] opacity-80"
-          />
-          <Image
-            src="/figma-assets/partner/featured-phone.png"
-            alt="Xparience app phone preview"
-            width={475}
-            height={494}
-            className="absolute left-1/2 top-1/2 w-[56%] -translate-x-1/2 -translate-y-1/2 rotate-[4deg]"
-          />
-          <Image
-            src="/figma-assets/partner/featured-screen.png"
-            alt=""
-            width={384}
-            height={425}
-            className="absolute left-[38%] top-[18%] w-[33%] rotate-[1deg]"
-          />
-          <div className="absolute -bottom-8 -left-8 flex h-[98px] w-[210px] items-center gap-4 rounded-2xl border border-white/20 bg-white/40 p-6 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] backdrop-blur-md">
+        <div className="relative mx-auto w-full max-w-[480px]">
+          <div className="relative aspect-[798/699] w-full overflow-hidden">
+            <Image
+              src="/figma-assets/partner/featured-modern-connection.png"
+              alt="Xparience community app preview"
+              fill
+              sizes="(min-width: 1024px) 480px, 90vw"
+              className="object-cover"
+            />
+          </div>
+          {/* <div className="absolute -bottom-8 -left-8 flex h-[98px] w-[210px] items-center gap-4 rounded-2xl border border-white/20 bg-white/40 p-6 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] backdrop-blur-md">
             <div className="size-12 rounded-full bg-[#98ff98]" />
             <div className="space-y-2">
               <div className="h-2 w-24 rounded-full bg-[#3f484d]/20" />
               <div className="h-2 w-16 rounded-full bg-[#3f484d]/10" />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
@@ -431,75 +318,6 @@ function ClosingCta() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#f1f4f7] px-5 text-[#3f484d] md:px-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-14 px-0 py-16 md:flex-row md:px-8">
-        <div className="max-w-[384px]">
-          <Link href="/" className="relative block h-[33px] w-[125px]">
-            <Image
-              src="/figma-assets/logo-word-b.svg"
-              alt="Ojoosco"
-              fill
-              className="object-contain"
-            />
-          </Link>
-          <p className="mt-8 max-w-[340px] text-[16px] leading-[1.65]">
-            Building a future where technology is a natural extension of human
-            intent and empathy.
-          </p>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-3 md:gap-16">
-          {footerGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#005069]">
-                {group.title}
-              </h3>
-              <ul className="mt-5 space-y-3 text-[16px]">
-                {group.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="transition hover:text-[#005069]">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <FooterSocialLinks />
-
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center border-t border-[#e6e6fa] py-6 pb-8 text-center text-[16px] text-[#5f5e5e]/70">
-        <p>&copy; 2026 Ojoosco Ltd Ltd. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
-
-function Field({
-  label,
-  placeholder,
-  type = "text",
-}: {
-  label: string;
-  placeholder: string;
-  type?: string;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-2 block px-2 text-[12px] font-bold text-[#3f484d]">
-        {label}
-      </span>
-      <input
-        type={type}
-        placeholder={placeholder}
-        className="h-[54px] w-full rounded-lg border-0 bg-white px-4 text-[14px] text-[#191c1e] outline-none ring-1 ring-transparent transition placeholder:text-[#8f989b] focus:ring-[#005068]"
-      />
-    </label>
-  );
-}
 
 function Reason({
   icon,
@@ -529,10 +347,12 @@ function ImageTile({
   src,
   title,
   className,
+  overlay = false,
 }: {
   src: string;
   title?: string;
   className: string;
+  overlay?: boolean;
 }) {
   return (
     <div
@@ -545,6 +365,7 @@ function ImageTile({
         sizes="333px"
         className="object-cover"
       />
+      {overlay ? <div className="absolute inset-0 bg-white/70" /> : null}
       {title ? (
         <h3 className="relative font-display text-[20px] text-[#191c1e]">
           {title}
@@ -554,22 +375,42 @@ function ImageTile({
   );
 }
 
-function PartnerIcon({ name }: { name: string }) {
-  const paths: Record<string, string> = {
-    handshake:
-      "M8.6 5.5 4.8 9.3a3 3 0 0 0 0 4.2l2.1 2.1 2.1-2.1-2.1-2.1 3.8-3.8 1.6 1.6 1.4-1.4-2-2a2.2 2.2 0 0 0-3.1-.3Zm6.8 0a2.2 2.2 0 0 0-3.1.3l-4.8 4.8 1.4 1.4 3.8-3.8 4.4 4.4-4.2 4.2-1.6-1.6-1.4 1.4 1.7 1.7a2 2 0 0 0 2.8 0l4.2-4.2a3 3 0 0 0 0-4.2l-3.2-3.4Z",
-    investment:
-      "M4 19h16v2H4v-2Zm1-9h3v7H5v-7Zm5 0h3v7h-3v-7Zm5 0h3v7h-3v-7ZM3 7l9-5 9 5v2H3V7Zm5.6 0h6.8L12 5.1 8.6 7Z",
-    brand:
-      "M12 3a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7Zm0 2a5 5 0 0 1 5 5c0 2.4-2.7 5.8-5 8.2C9.7 15.8 7 12.4 7 10a5 5 0 0 1 5-5Zm0 2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z",
-    media:
-      "M4 9h3l8-4v14l-8-4H4V9Zm2 2v2h1.5l5.5 2.8V8.2L7.5 11H6Zm12.5-2.5 1.4 1.4L17.8 12l2.1 2.1-1.4 1.4-3.5-3.5 3.5-3.5Z",
-  };
+const partnerIcons: Record<
+  string,
+  { src: string; width: number; height: number }
+> = {
+  handshake: {
+    src: "/figma-assets/partner/icons/handshake.png",
+    width: 50,
+    height: 45,
+  },
+  investment: {
+    src: "/figma-assets/partner/icons/investment.png",
+    width: 45,
+    height: 45,
+  },
+  brand: {
+    src: "/figma-assets/partner/icons/brand.png",
+    width: 45,
+    height: 45,
+  },
+  media: {
+    src: "/figma-assets/partner/icons/media.png",
+    width: 48,
+    height: 36,
+  },
+};
 
+function PartnerIcon({ name }: { name: string }) {
+  const icon = partnerIcons[name];
   return (
-    <svg className="size-7 text-[#006989]" viewBox="0 0 24 24" aria-hidden="true">
-      <path d={paths[name]} fill="currentColor" />
-    </svg>
+    <Image
+      src={icon.src}
+      alt=""
+      width={icon.width}
+      height={icon.height}
+      className="h-7 w-auto object-contain"
+    />
   );
 }
 
