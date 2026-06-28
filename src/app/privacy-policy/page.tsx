@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { FooterSocialLinks } from "../footer-social-links";
+import { SiteHeader } from "@/components/layout/site-header";
+import { LegalSidebar } from "@/components/layout/legal-sidebar";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Ojoosco",
   description:
     "Read how Ojoosco Ltd collects, uses, stores, and protects information across its corporate website and services.",
 };
-
-const navItems = [
-  ["Home", "/"],
-  ["About", "/about-us"],
-  ["Ventures", "/ventures"],
-  ["Investment", "/investment"],
-  ["Contact", "/contact-us"],
-] as const;
 
 const heroMeta = [
   ["Effective Date", "May , 2026"],
@@ -166,33 +158,6 @@ const contactCards = [
   },
 ] as const;
 
-const footerGroups = [
-  {
-    title: "Navigation",
-    links: [
-      ["Home", "/"],
-      ["About", "/about-us"],
-      ["Ventures", "/ventures"],
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      ["Investment", "/investment"],
-      ["Partner With Us", "/partner-with-us"],
-      ["Contact", "/contact-us"],
-      ["Explore Opportunities", "/explore-opportunities#opportunities"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy-policy"],
-      ["Terms of Service", "#"],
-    ],
-  },
-] as const;
-
 type PolicyIconName = keyof typeof iconPaths;
 
 export default function PrivacyPolicy() {
@@ -200,7 +165,6 @@ export default function PrivacyPolicy() {
     <main id="top" className="min-h-screen bg-[#f5f6f7] text-[#1a1c1e]">
       <Hero />
       <PolicyContent />
-      <Footer />
     </main>
   );
 }
@@ -212,7 +176,7 @@ function Hero() {
       <div className="absolute left-[-120px] top-[250px] size-[500px] rounded-full bg-[#2d80a0]/20 blur-[60px]" />
       <div className="absolute right-[8%] top-[360px] size-[400px] rounded-full bg-[#4a3aff]/10 blur-[50px]" />
 
-      <PrivacyHeader />
+      <SiteHeader variant="inner" />
 
       <div className="relative mx-auto max-w-[1280px] pt-24 md:pt-[160px]">
         <div className="max-w-[768px]">
@@ -246,50 +210,17 @@ function Hero() {
   );
 }
 
-function PrivacyHeader() {
-  return (
-    <header className="relative z-20 mx-auto max-w-[1196px] rounded-[20px] bg-[#3a5153] px-4 py-3 shadow-[0_18px_45px_rgba(25,28,30,0.08)] md:px-10 md:py-6">
-      <div className="flex h-8 items-center justify-between md:h-[52px]">
-        <Link href="/" className="relative block h-[27px] w-[101px] md:h-[34px] md:w-[125px]">
-          <Image
-            src="/figma-assets/logo-mark-b.svg"
-            alt="Ojoosco"
-            fill
-            priority
-            className="object-contain"
-          />
-        </Link>
-        <nav className="hidden items-center gap-10 text-[13px] font-medium text-white lg:flex xl:gap-16">
-          {navItems.map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className={
-                label === "Home"
-                  ? "rounded-full bg-[#d9d9d9] px-4 py-1.5 text-[#3f484d]"
-                  : "transition hover:text-[#98ff98]"
-              }
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="/contact-us"
-          className="inline-flex h-9 items-center justify-center rounded-xl bg-[#98ff98] px-4 text-[10px] font-extrabold uppercase tracking-[0.05em] text-[#3f484d] transition hover:bg-[#b8ffb8] md:h-[52px] md:px-6 md:text-[12px]"
-        >
-          Get In Touch
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 function PolicyContent() {
   return (
     <section className="bg-[#f5f6f7] px-5 pb-20 md:px-20 md:pb-28">
       <div className="mx-auto grid max-w-[1280px] gap-8 lg:grid-cols-[296px_minmax(0,952px)] lg:items-start">
-        <LegalSidebar />
+        <LegalSidebar
+          items={sidebarItems}
+          subtitle="Privacy Policy"
+          ariaLabel="Privacy policy sections"
+          pdfHref="/legal/privacy-policy.docx"
+        />
 
         <div className="space-y-[86px] pt-8 lg:pt-0">
           <PolicySection id="who-we-are" title="Who We Are">
@@ -470,46 +401,6 @@ function PolicyContent() {
   );
 }
 
-function LegalSidebar() {
-  return (
-    <aside className="pt-6 lg:sticky lg:top-8">
-      <div className="rounded-xl bg-[#f2f4f7]/50 p-6 text-[#3f484d] backdrop-blur-md">
-        <p className="font-display text-[20px] font-bold leading-[30px] text-[#191c1e]">
-          Legal Center
-        </p>
-        <p className="text-[14px] font-normal leading-5 text-[#3f484d]">
-          Privacy Policy
-        </p>
-        <nav aria-label="Privacy policy sections" className="mt-8">
-          <ul className="space-y-2">
-            {sidebarItems.map(([label, href]) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  className={
-                    label === "Who We Are"
-                      ? "block border-l-2 border-[#005068] bg-[#cae7f7]/20 py-2 pl-[18px] text-[16px] font-bold leading-6 text-[#005068]"
-                      : "block py-2 pl-4 text-[16px] font-normal leading-6 text-[#3f484d] transition hover:text-[#005068]"
-                  }
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <a
-          href="#top"
-          className="mt-6 inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#e0e3e6]/50 px-10 text-[12px] font-medium uppercase leading-none tracking-[0.1em] text-[#005068] transition hover:bg-[#d8dde1]"
-        >
-          <DownloadIcon />
-          Download PDF
-        </a>
-      </div>
-    </aside>
-  );
-}
-
 function PolicySection({
   id,
   title,
@@ -629,52 +520,6 @@ function ContactPrivacyTeam() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#f1f4f7] px-5 text-[#3f484d] md:px-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-14 px-0 py-16 md:flex-row md:px-8">
-        <div className="max-w-[384px]">
-          <Link href="/" className="relative block h-[33px] w-[125px]">
-            <Image
-              src="/figma-assets/logo-word-b.svg"
-              alt="Ojoosco"
-              fill
-              className="object-contain"
-            />
-          </Link>
-          <p className="mt-8 max-w-[340px] text-[16px] leading-[1.65]">
-            Building a future where technology is a natural extension of human
-            intent and empathy.
-          </p>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-3 md:gap-16">
-          {footerGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#005069]">
-                {group.title}
-              </h3>
-              <ul className="mt-5 space-y-3 text-[16px]">
-                {group.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="transition hover:text-[#005069]">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <FooterSocialLinks />
-
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center border-t border-[#e6e6fa] py-6 pb-8 text-center text-[16px] text-[#5f5e5e]/70">
-        <p>&copy; 2026 Ojoosco Ltd. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
 
 function PolicyIcon({
   name,
@@ -702,21 +547,6 @@ function ArrowIcon() {
     <svg className="size-4" viewBox="0 0 24 24" aria-hidden="true">
       <path
         d="M5 12h14m-6-6 6 6-6 6"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function DownloadIcon() {
-  return (
-    <svg className="size-3.5" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"
