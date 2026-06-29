@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FooterSocialLinks } from "../footer-social-links";
+import { SiteHeader } from "@/components/layout/site-header";
+import { PitchDeckForm } from "./pitch-deck-form";
 
 export const metadata: Metadata = {
   title: "Explore Opportunities | Ojoosco",
   description:
     "Explore investment, partnership, and venture opportunities with Ojoosco Ltd.",
 };
-
-const navItems = [
-  ["Home", "/"],
-  ["About", "/about-us"],
-  ["Ventures", "/ventures"],
-  ["Investment", "/investment"],
-  ["Contact", "/contact-us"],
-] as const;
 
 const opportunityCards = [
   {
@@ -68,33 +61,6 @@ const highlights = [
   },
 ] as const;
 
-const footerGroups = [
-  {
-    title: "Navigation",
-    links: [
-      ["Home", "/"],
-      ["About", "/about-us"],
-      ["Ventures", "/ventures"],
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      ["Investment", "/investment"],
-      ["Partner With Us", "/partner-with-us"],
-      ["Contact", "/contact-us"],
-      ["Explore Opportunities", "/explore-opportunities#opportunities"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy-policy"],
-      ["Terms of Service", "#"],
-    ],
-  },
-] as const;
-
 export default function ExploreOpportunities() {
   return (
     <main className="min-h-screen bg-white text-[#191c1e]">
@@ -105,7 +71,6 @@ export default function ExploreOpportunities() {
       <PitchDeck />
       <Philosophy />
       <ClosingCta />
-      <Footer />
     </main>
   );
 }
@@ -113,7 +78,7 @@ export default function ExploreOpportunities() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-white px-5 pb-20 pt-8 md:min-h-[892px] md:px-20">
-      <ExploreHeader />
+      <SiteHeader variant="inner" />
       <div className="absolute right-[-260px] top-[110px] size-[760px] rounded-full bg-[#f3f7fb] blur-[18px]" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:pt-[132px] lg:grid-cols-[1.05fr_0.95fr]">
@@ -151,36 +116,6 @@ function Hero() {
   );
 }
 
-function ExploreHeader() {
-  return (
-    <header className="relative z-20 mx-auto max-w-[1196px] rounded-[12px] bg-[#3a5153] px-4 py-3 shadow-[0_18px_45px_rgba(25,28,30,0.08)] md:px-10 md:py-6">
-      <div className="flex h-8 items-center justify-between md:h-[52px]">
-        <Link href="/" className="relative block h-[27px] w-[101px] md:h-[34px] md:w-[125px]">
-          <Image
-            src="/figma-assets/logo-mark-b.svg"
-            alt="Ojoosco"
-            fill
-            priority
-            className="object-contain"
-          />
-        </Link>
-        <nav className="hidden items-center gap-10 text-[13px] font-medium text-white lg:flex xl:gap-16">
-          {navItems.map(([label, href]) => (
-            <Link key={label} href={href} className="transition hover:text-[#98ff98]">
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="/partner-with-us"
-          className="inline-flex h-9 items-center justify-center rounded-lg bg-[#98ff98] px-4 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#3f484d] transition hover:bg-[#b8ffb8] md:h-[52px] md:px-6 md:text-[12px]"
-        >
-          Partner With Us
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 function HeroVisual() {
   return (
@@ -306,23 +241,13 @@ function FlagshipVenture() {
       <div className="mx-auto grid max-w-[1216px] items-center gap-16 lg:grid-cols-[0.96fr_1fr]">
         <div className="relative mx-auto w-full max-w-[560px]">
           <div className="relative aspect-[1.05] overflow-visible rounded-[30px] bg-[#e8eff2] p-3 shadow-[0_20px_55px_rgba(25,28,30,0.08)]">
-            <div className="relative h-full overflow-hidden rounded-[23px] bg-[#316a6f]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(140,218,224,0.2),transparent_34%),linear-gradient(135deg,#3b7479,#28575b)]" />
+            <div className="relative h-full overflow-hidden rounded-[23px]">
               <Image
-                src="/figma-assets/opportunities/iphone-15.png"
-                alt=""
-                width={2770}
-                height={3472}
-                sizes="(min-width: 1024px) 340px, 64vw"
-                className="absolute left-[28%] top-[9%] w-[44%] opacity-95"
-              />
-              <Image
-                src="/figma-assets/opportunities/xparience-screen.png"
-                alt="Xparience app wellbeing preview"
-                width={650}
-                height={795}
-                sizes="(min-width: 1024px) 250px, 48vw"
-                className="absolute left-[31%] top-[11%] w-[40%] drop-shadow-[0_22px_28px_rgba(0,0,0,0.22)]"
+                src="/figma-assets/opportunities/flagship-venture.png"
+                alt="Xparience Well Being app preview"
+                fill
+                sizes="(min-width: 1024px) 540px, 90vw"
+                className="object-cover"
               />
             </div>
           </div>
@@ -443,42 +368,7 @@ function PitchDeck() {
           </div>
         </div>
 
-        <form className="rounded-[28px] bg-white/76 p-8 shadow-[0_28px_70px_rgba(25,28,30,0.06)] backdrop-blur-md md:p-12">
-          <div className="grid gap-x-7 gap-y-6 md:grid-cols-2">
-            <Field label="Full Name" placeholder="John Doe" />
-            <Field label="Company / Organisation" placeholder="Investment Partners" />
-            <Field label="Email Address" placeholder="john@example.com" type="email" />
-            <label className="block">
-              <span className="mb-2 block text-[11px] font-extrabold text-[#5e686d]">
-                Investor Type
-              </span>
-              <select className="h-[52px] w-full rounded-lg border-0 bg-[#edf1f4] px-4 text-[13px] font-medium text-[#3f484d] outline-none ring-1 ring-transparent transition focus:ring-[#006989]">
-                <option>Angel Investor</option>
-                <option>Venture Capital</option>
-                <option>Strategic Partner</option>
-                <option>Family Office</option>
-              </select>
-            </label>
-            <div className="md:col-span-2">
-              <Field label="LinkedIn or Website" placeholder="https://" />
-            </div>
-            <label className="block md:col-span-2">
-              <span className="mb-2 block text-[11px] font-extrabold text-[#5e686d]">
-                Message
-              </span>
-              <textarea
-                className="min-h-[144px] w-full resize-none rounded-lg border-0 bg-[#edf1f4] px-4 py-4 text-[13px] text-[#191c1e] outline-none ring-1 ring-transparent transition placeholder:text-[#8c969b] focus:ring-[#006989]"
-                placeholder="Tell us more about your interest..."
-              />
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="mt-8 h-[62px] w-full rounded-lg bg-[#006680] text-[12px] font-extrabold uppercase tracking-[0.18em] text-white shadow-[0_14px_28px_rgba(0,104,128,0.2)] transition hover:bg-[#00566d]"
-          >
-            Request Access
-          </button>
-        </form>
+        <PitchDeckForm />
       </div>
     </section>
   );
@@ -536,52 +426,6 @@ function ClosingCta() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#f1f4f7] px-5 text-[#3f484d] md:px-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-14 px-0 py-16 md:flex-row md:px-8">
-        <div className="max-w-[384px]">
-          <Link href="/" className="relative block h-[33px] w-[125px]">
-            <Image
-              src="/figma-assets/logo-word-b.svg"
-              alt="Ojoosco"
-              fill
-              className="object-contain"
-            />
-          </Link>
-          <p className="mt-8 max-w-[340px] text-[16px] leading-[1.65]">
-            Building a future where technology is a natural extension of human
-            intent and empathy.
-          </p>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-3 md:gap-16">
-          {footerGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#005069]">
-                {group.title}
-              </h3>
-              <ul className="mt-5 space-y-3 text-[16px]">
-                {group.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="transition hover:text-[#005069]">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <FooterSocialLinks />
-
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center border-t border-[#e6e6fa] py-6 pb-8 text-center text-[16px] text-[#5f5e5e]/70">
-        <p>&copy; 2026 Ojoosco Ltd. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
 
 function OpportunityIcon({ name }: { name: (typeof opportunityCards)[number]["icon"] }) {
   const variants: Record<typeof name, { bg: string; color: string; path: string }> = {
@@ -654,25 +498,3 @@ function AccessIcon({ name }: { name: "secure" | "financials" }) {
   );
 }
 
-function Field({
-  label,
-  placeholder,
-  type = "text",
-}: {
-  label: string;
-  placeholder: string;
-  type?: string;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-2 block text-[11px] font-extrabold text-[#5e686d]">
-        {label}
-      </span>
-      <input
-        type={type}
-        placeholder={placeholder}
-        className="h-[52px] w-full rounded-lg border-0 bg-[#edf1f4] px-4 text-[13px] text-[#191c1e] outline-none ring-1 ring-transparent transition placeholder:text-[#8c969b] focus:ring-[#006989]"
-      />
-    </label>
-  );
-}

@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FooterSocialLinks } from "../footer-social-links";
+import { SiteHeader } from "@/components/layout/site-header";
 
 export const metadata: Metadata = {
   title: "About Us | Ojoosco",
   description:
     "Learn about Ojoosco Ltd, our story, philosophy, team, and human-centred technology vision.",
 };
-
-const navItems = [
-  ["Home", "/"],
-  ["About", "/about-us"],
-  ["Ventures", "/ventures"],
-  ["Investment", "/investment"],
-  ["Contact", "/contact-us"],
-] as const;
 
 const statements = [
   {
@@ -66,33 +58,6 @@ const team = [
   },
 ] as const;
 
-const footerGroups = [
-  {
-    title: "Navigation",
-    links: [
-      ["Home", "/"],
-      ["About", "/about-us"],
-      ["Ventures", "/ventures"],
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      ["Investment", "/investment"],
-      ["Partner With Us", "/partner-with-us"],
-      ["Contact", "/contact-us"],
-      ["Explore Opportunities", "/explore-opportunities#opportunities"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy-policy"],
-      ["Terms of Service", "#"],
-    ],
-  },
-] as const;
-
 export default function AboutUs() {
   return (
     <main className="min-h-screen bg-[#f8f9fa] text-[#181c1e]">
@@ -101,7 +66,6 @@ export default function AboutUs() {
       <Philosophy />
       <Team />
       <FutureAmbitions />
-      <Footer />
     </main>
   );
 }
@@ -120,7 +84,7 @@ function Hero() {
       <div className="absolute inset-0 bg-white/[0.96]" />
       <div className="absolute bottom-4 right-[-80px] top-1/4 w-[600px] rounded-full bg-[#005069]/10 blur-[60px]" />
 
-      <AboutHeader />
+      <SiteHeader variant="inner" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:pt-[120px] lg:grid-cols-[1.05fr_0.95fr]">
         <div className="max-w-[690px]">
@@ -153,56 +117,18 @@ function Hero() {
   );
 }
 
-function AboutHeader() {
-  return (
-    <header className="relative z-20 mx-auto max-w-[1196px] rounded-[20px] bg-[#3a5153] px-4 py-3 shadow-[0_18px_45px_rgba(25,28,30,0.08)] md:px-10 md:py-6">
-      <div className="flex h-8 items-center justify-between md:h-[52px]">
-        <Link href="/" className="relative block h-[27px] w-[101px] md:h-[34px] md:w-[125px]">
-          <Image
-            src="/figma-assets/logo-mark-b.svg"
-            alt="Ojoosco"
-            fill
-            priority
-            className="object-contain"
-          />
-        </Link>
-        <nav className="hidden items-center gap-10 text-[13px] font-medium text-white lg:flex xl:gap-16">
-          {navItems.map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className={
-                label === "About"
-                  ? "rounded-full bg-[#d9d9d9] px-4 py-1.5 text-[#3f484d]"
-                  : "transition hover:text-[#98ff98]"
-              }
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="/partner-with-us"
-          className="inline-flex h-9 items-center justify-center rounded-xl bg-[#98ff98] px-4 text-[10px] font-extrabold uppercase tracking-[0.05em] text-[#3f484d] transition hover:bg-[#b8ffb8] md:h-[52px] md:px-6 md:text-[12px]"
-        >
-          Partner With Us
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 function Story() {
   return (
     <section className="bg-[#e5edf1] px-5 py-16 md:px-20">
       <div className="mx-auto max-w-[1280px] px-0 md:px-8">
-        <div className="mx-auto max-w-[1120px] text-center">
+        <div className="mx-auto max-w-[1216px] text-center">
           <h2 className="font-display text-[36px] font-semibold leading-[1.25] tracking-[0] text-[#191c1e] md:text-[48px]">
             Our Story
           </h2>
-          <div className="mx-auto mt-7 max-w-[1056px] space-y-1 text-[15px] leading-[1.9] text-[#3f484d] md:text-[18px] md:leading-[2]">
+          <div className="mx-auto mt-7 max-w-[1216px] space-y-1 text-[15px] leading-[1.9] text-[#3f484d] md:text-[18px] md:leading-[2]">
             <p>
-              Ojoosco Ltd was founded on a simple belief - technology should
+              Ojoosco Ltd was founded on a simple belief — technology should
               feel more human.
             </p>
             <p>
@@ -375,49 +301,3 @@ function FutureAmbitions() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#f1f4f7] px-5 text-[#3f484d] md:px-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-14 px-0 py-16 md:flex-row md:px-8">
-        <div className="max-w-[384px]">
-          <Link href="/" className="relative block h-[33px] w-[125px]">
-            <Image
-              src="/figma-assets/logo-word-b.svg"
-              alt="Ojoosco"
-              fill
-              className="object-contain"
-            />
-          </Link>
-          <p className="mt-8 max-w-[340px] text-[16px] leading-[1.65]">
-            Building a future where technology is a natural extension of human
-            intent and empathy.
-          </p>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-3 md:gap-16">
-          {footerGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#005069]">
-                {group.title}
-              </h3>
-              <ul className="mt-5 space-y-3 text-[16px]">
-                {group.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="transition hover:text-[#005069]">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <FooterSocialLinks />
-
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center border-t border-[#e6e6fa] py-6 pb-8 text-center text-[16px] text-[#5f5e5e]/70">
-        <p>&copy; 2026 Ojoosco Ltd. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}

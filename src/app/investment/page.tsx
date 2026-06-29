@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FooterSocialLinks } from "../footer-social-links";
+import { SiteHeader } from "@/components/layout/site-header";
 
 export const metadata: Metadata = {
   title: "Investment | Ojoosco",
   description:
     "Explore Ojoosco Ltd's investment opportunity for Xparience, a premium relationship and lifestyle platform.",
 };
-
-const navItems = [
-  ["Home", "/"],
-  ["About", "/about-us"],
-  ["Ventures", "/ventures"],
-  ["Investment", "/investment"],
-  ["Contact", "/contact-us"],
-] as const;
 
 const marketStats = [
   {
@@ -64,7 +56,7 @@ const deploymentCards = [
     icon: "team",
     title: "Team & Operations",
     body: "Expanding our lean team with the right talent to execute at pace.",
-    className: "lg:col-span-4",
+    className: "lg:col-span-4 lg:justify-start!",
   },
   {
     icon: "shield",
@@ -102,33 +94,6 @@ const investmentReasons = [
   },
 ] as const;
 
-const footerGroups = [
-  {
-    title: "Navigation",
-    links: [
-      ["Home", "/"],
-      ["About", "/about-us"],
-      ["Ventures", "/ventures"],
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      ["Investment", "/investment"],
-      ["Partner With Us", "/partner-with-us"],
-      ["Contact", "/contact-us"],
-      ["Explore Opportunities", "/explore-opportunities#opportunities"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy-policy"],
-      ["Terms of Service", "#"],
-    ],
-  },
-] as const;
-
 type DeploymentIconName = keyof typeof deploymentIconPaths;
 
 export default function Investment() {
@@ -141,7 +106,6 @@ export default function Investment() {
       <WhyInvest />
       <VisionBand />
       <FinalCta />
-      <Footer />
     </main>
   );
 }
@@ -150,13 +114,19 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-white px-5 pb-20 pt-8 md:px-20 md:pb-[120px]">
       <div className="absolute bottom-4 right-[-80px] top-1/4 w-[600px] rounded-full bg-[#005068]/10 blur-[60px]" />
-      <InvestmentHeader />
+      <SiteHeader variant="inner" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:px-8 md:pt-[120px] lg:grid-cols-[7fr_5fr] lg:gap-8">
         <div className="max-w-[720px] pb-0 lg:pb-16">
-          <h1 className="font-display text-balance text-[44px] font-semibold leading-[1.1] tracking-[0] text-[#005068] md:text-[72px]">
-            Investing in the Future of{" "}
-            <span className="italic text-[#47626f]">Human-Centred</span>{" "}
+          <h1 className="font-display text-[44px] font-semibold leading-[1.1] tracking-[0] text-[#005068] md:text-[70px] lg:whitespace-nowrap">
+            Investing in the{" "}
+            <br className="hidden md:block" />
+            Future of{" "}
+            <span className="italic text-[#47626f]">
+              Human-
+              <br className="hidden md:block" />
+              Centred
+            </span>{" "}
             Connection
           </h1>
           <p className="mt-8 max-w-[672px] text-[16px] leading-[1.65] text-[#3f484d] md:text-[18px]">
@@ -187,44 +157,6 @@ function Hero() {
   );
 }
 
-function InvestmentHeader() {
-  return (
-    <header className="relative z-20 mx-auto max-w-[1196px] rounded-[20px] bg-[#3a5153] px-4 py-3 shadow-[0_18px_45px_rgba(25,28,30,0.08)] md:px-10 md:py-6">
-      <div className="flex h-8 items-center justify-between md:h-[52px]">
-        <Link href="/" className="relative block h-[27px] w-[101px] md:h-[34px] md:w-[125px]">
-          <Image
-            src="/figma-assets/logo-mark-b.svg"
-            alt="Ojoosco"
-            fill
-            priority
-            className="object-contain"
-          />
-        </Link>
-        <nav className="hidden items-center gap-10 text-[13px] font-medium text-white lg:flex xl:gap-16">
-          {navItems.map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className={
-                label === "Investment"
-                  ? "rounded-full bg-[#d9d9d9] px-4 py-1.5 text-[#3f484d]"
-                  : "transition hover:text-[#98ff98]"
-              }
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="/partner-with-us"
-          className="inline-flex h-9 items-center justify-center rounded-xl bg-[#98ff98] px-4 text-[10px] font-extrabold uppercase tracking-[0.05em] text-[#3f484d] transition hover:bg-[#b8ffb8] md:h-[52px] md:px-6 md:text-[12px]"
-        >
-          Partner With Us
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 function HeroInvestorCard() {
   return (
@@ -308,7 +240,7 @@ function Opportunity() {
   return (
     <section className="overflow-hidden bg-[#f8f9fa] px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-8">
-        <div className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-[24px] bg-[#0f2124] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] lg:mx-0">
+        <div className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-[24px] lg:mx-0">
           <Image
             src="/figma-assets/investment/market-insight.png"
             alt="Market growth chart"
@@ -415,10 +347,7 @@ function WhyInvest() {
 
         <div className="space-y-12">
           {investmentReasons.map((reason) => (
-            <article
-              key={reason.number}
-              className="border-b border-[#bfc8ce] pb-12"
-            >
+            <article key={reason.number}>
               <div className="grid gap-5 sm:grid-cols-[22px_1fr] sm:gap-8">
                 <p className="font-display text-[16px] leading-6 text-[#005068]/20">
                   {reason.number}
@@ -432,6 +361,7 @@ function WhyInvest() {
                   </p>
                 </div>
               </div>
+              <div className="mt-12 h-px w-[316px] max-w-full bg-[#bfc8ce]" />
             </article>
           ))}
         </div>
@@ -493,52 +423,6 @@ function FinalCta() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#f1f4f7] px-5 text-[#3f484d] md:px-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-14 px-0 py-16 md:flex-row md:px-8">
-        <div className="max-w-[384px]">
-          <Link href="/" className="relative block h-[33px] w-[125px]">
-            <Image
-              src="/figma-assets/logo-word-b.svg"
-              alt="Ojoosco"
-              fill
-              className="object-contain"
-            />
-          </Link>
-          <p className="mt-8 max-w-[340px] text-[16px] leading-[1.65]">
-            Building a future where technology is a natural extension of human
-            intent and empathy.
-          </p>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-3 md:gap-16">
-          {footerGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#005069]">
-                {group.title}
-              </h3>
-              <ul className="mt-5 space-y-3 text-[16px]">
-                {group.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="transition hover:text-[#005069]">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <FooterSocialLinks />
-
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center border-t border-[#e6e6fa] py-6 pb-8 text-center text-[16px] text-[#5f5e5e]/70">
-        <p>&copy; 2026 Ojoosco Ltd. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
 
 function DeploymentIcon({
   name,
@@ -547,6 +431,20 @@ function DeploymentIcon({
   name: DeploymentIconName;
   className: string;
 }) {
+  const image = deploymentIconImages[name];
+  if (image) {
+    return (
+      <Image
+        src={image.src}
+        alt=""
+        width={image.width}
+        height={image.height}
+        className={`${className} self-start object-contain`}
+        style={{ width: "auto", height: "20px" }}
+      />
+    );
+  }
+
   return (
     <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
       <path
@@ -560,6 +458,21 @@ function DeploymentIcon({
     </svg>
   );
 }
+
+const deploymentIconImages: Partial<
+  Record<DeploymentIconName, { src: string; width: number; height: number }>
+> = {
+  product: {
+    src: "/figma-assets/investment/deploy-product.png",
+    width: 45,
+    height: 41,
+  },
+  team: {
+    src: "/figma-assets/investment/deploy-team.png",
+    width: 54,
+    height: 27,
+  },
+};
 
 function ArrowTrendIcon() {
   return (

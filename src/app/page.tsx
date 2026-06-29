@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FooterSocialLinks } from "./footer-social-links";
-import { LandingHeader } from "./landing-header";
+import ReactDOM from "react-dom";
+import { SiteHeader } from "@/components/layout/site-header";
 
 const pillarIconAssets = {
   product: {
@@ -48,33 +48,6 @@ const pillars: Array<{
   },
 ];
 
-const footerGroups = [
-  {
-    title: "Navigation",
-    links: [
-      ["Home", "/"],
-      ["About", "/about-us"],
-      ["Ventures", "/ventures"],
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      ["Investment", "/investment"],
-      ["Partner With Us", "/partner-with-us"],
-      ["Contact", "/contact-us"],
-      ["Explore Opportunities", "/explore-opportunities#opportunities"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/privacy-policy"],
-      ["Terms of Service", "#"],
-    ],
-  },
-];
-
 const stats = [
   ["Pre-Seed Status", "Open"],
   ["Venture Count", "01 Active"],
@@ -83,6 +56,11 @@ const stats = [
 ];
 
 export default function Home() {
+  ReactDOM.preload("/figma-assets/landing/electric-orb-1.png", {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   return (
     <main className="min-h-screen bg-[#f8f9fa] text-[#124343]">
       <Hero />
@@ -92,30 +70,31 @@ export default function Home() {
       <Leadership />
       <Investment />
       <FinalCta />
-      <Footer />
     </main>
   );
 }
 
 function Hero() {
   return (
-    <section className="hero-field relative flex min-h-[760px] overflow-hidden bg-[#124343] px-5 pb-16 pt-8 text-white md:min-h-[944px]">
-      <Image
-        src="/figma-assets/landing/electric-orb.png"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="absolute inset-0 z-0 object-cover object-center"
-      />
-      <LandingHeader />
+    <section
+      className="hero-field relative flex min-h-dvh overflow-hidden bg-[#124343] px-5 pb-16 pt-8 text-white"
+      style={{
+        backgroundImage: "url(/figma-assets/landing/electric-orb-1.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "top",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <SiteHeader variant="landing" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center pt-24 text-center md:pt-28">
-        <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.36em] text-white/70 md:mb-8">
+        <p className="text-[11px] font-bold uppercase tracking-[0.36em] text-white/70">
           Est. 2026 London
         </p>
         <h1 className="font-display max-w-[900px] text-balance text-5xl font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[72px]">
-          Where Innovation Meets Humanity
+          Where Innovation Meets{" "}
+          <br className="hidden md:block" />
+          Humanity
         </h1>
         <p className="mt-7 max-w-[746px] text-pretty text-base leading-8 text-white/72 md:text-xl">
           Built with precision. Designed for people. Creating digital
@@ -123,7 +102,7 @@ function Hero() {
         </p>
         <Link
           href="/ventures"
-          className="mt-7 inline-flex h-[52px] items-center justify-center rounded-lg bg-[#0b2020] px-8 text-[12px] font-extrabold uppercase tracking-[0.22em] text-white shadow-[0_18px_36px_rgba(0,0,0,0.18)] transition hover:bg-[#102b2b] focus:outline-none focus:ring-2 focus:ring-[#98ff98]"
+          className="mt-7 inline-flex h-[52px] items-center justify-center rounded-lg bg-[#181C1E] px-8 font-sans text-[12px] font-bold uppercase tracking-[0.22em] text-white shadow-[0_18px_36px_rgba(0,0,0,0.18)] transition hover:bg-[#23282b] focus:outline-none focus:ring-2 focus:ring-[#98ff98]"
         >
           Explore Our Ventures
         </Link>
@@ -134,7 +113,7 @@ function Hero() {
 
 function Pillars() {
   return (
-    <section id="about" className="bg-[#f8f9fa] px-5 py-20">
+    <section id="about" className="bg-[#F3F4F5] px-5 py-20">
       <div className="mx-auto max-w-[1280px]">
         <h2 className="font-display text-center text-3xl font-semibold tracking-[-0.01em] text-[#124343] md:text-[40px]">
           Our Core Pillars
@@ -143,7 +122,7 @@ function Pillars() {
           {pillars.map((pillar) => (
             <article
               key={pillar.title}
-              className="min-h-[264px] border border-[#d8dddd] bg-white px-10 py-10 shadow-[0_18px_40px_rgba(18,67,67,0.06)]"
+              className="min-h-[264px] border border-[#C0C8C7] bg-white px-10 py-10 rounded-[4px]"
             >
               <PillarIcon name={pillar.icon} />
               <h3 className="mt-8 text-[22px] font-extrabold tracking-[-0.01em] text-[#124343]">
@@ -162,7 +141,7 @@ function Pillars() {
 
 function Ventures() {
   return (
-    <section id="ventures" className="bg-[#f1f2f3] px-5 py-16 md:py-20">
+    <section id="ventures" className="bg-[#F8F9FA] px-5 py-16 md:py-20">
       <div className="mx-auto max-w-[1280px]">
         <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#006989]">
           Portfolio
@@ -171,10 +150,10 @@ function Ventures() {
           Active Ventures
         </h2>
 
-        <article className="mt-10 grid overflow-hidden bg-[#e9ecef] lg:grid-cols-[1fr_0.96fr]">
+        <article className="mt-10 grid overflow-hidden bg-[#EDEEEF] lg:grid-cols-[1fr_0.96fr]">
           <div className="flex min-h-[420px] flex-col justify-center px-8 py-14 md:px-16 lg:min-h-[660px]">
             <div className="flex items-center gap-4">
-              <span className="rounded-sm bg-[#0b4f4e] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#98ff98]">
+              <span className="rounded-[2px] bg-[#124343] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#ffffff]">
                 Flagship
               </span>
               <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8585]">
@@ -191,7 +170,7 @@ function Ventures() {
             </p>
             <Link
               href="/ventures#xparience"
-              className="mt-8 inline-flex h-[52px] w-fit items-center gap-4 rounded-md bg-[#0b4f4e] px-8 text-[12px] font-extrabold uppercase tracking-[0.18em] text-white transition hover:bg-[#123f3f]"
+              className="mt-8 inline-flex h-[52px] w-fit items-center gap-2 rounded-[12px] bg-[#124343] px-8 text-[16px] font-semibold uppercase tracking-[1.8px] text-white transition hover:bg-[#123f3f]"
             >
               View Venture
               <Image
@@ -206,7 +185,7 @@ function Ventures() {
 
           <div className="flex min-h-[480px] items-center justify-center px-7 pb-12 lg:min-h-[660px] lg:px-16 lg:py-16">
             <Image
-              src="/figma-assets/landing/active-ventures-artwork.png"
+              src="/figma-assets/landing/ventures-hand.png"
               alt="Hand holding a phone displaying the Xparience app"
               width={552}
               height={532}
@@ -228,7 +207,7 @@ function Ventures() {
 function Philosophy() {
   return (
     <section className="bg-[#124343] px-5 py-24 text-center text-white md:py-28">
-      <div className="mx-auto max-w-[672px]">
+      <div className="mx-auto max-w-[900px]">
         <Image
           src="/figma-assets/landing/icons/philosophy-quote.png"
           alt=""
@@ -236,16 +215,21 @@ function Philosophy() {
           height={29}
           className="mx-auto h-[29px] w-[41px]"
         />
-        <h2 className="font-display mt-7 text-balance text-3xl font-semibold leading-[1.18] tracking-[-0.02em] md:text-[42px]">
-          Technology should feel like a natural extension of our humanity, not
-          a distraction from it.
+        <h2 className="font-sans mx-auto mt-7 max-w-[900px] text-center text-3xl font-semibold leading-[1.18] tracking-[-0.02em] md:text-[42px]">
+          Technology should feel like a natural{" "}
+          <br className="hidden md:block" />
+          extension of our humanity, not a
+          <br className="hidden md:block" />
+          distraction from it.
         </h2>
         <div className="mx-auto mt-12 h-px w-12 bg-white/30" />
-        <p className="mx-auto mt-12 max-w-[586px] text-pretty text-[16px] leading-[1.9] text-white/58">
+        <p className="font-sans mx-auto mt-12 max-w-[586px] text-[16px] font-normal leading-[1.9] text-white/58">
           &quot;We believe in the power of quiet innovation. Our goal isn&apos;t
-          to build the loudest product, but the most meaningful one.&quot;
+          to build the{" "}
+          <br className="hidden md:block" />
+          loudest product, but the most meaningful one.&quot;
         </p>
-        <p className="mt-8 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white/72">
+        <p className="font-inter mt-8 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/72">
           - The Ojoosco Ltd Ethos
         </p>
       </div>
@@ -265,6 +249,13 @@ function Leadership() {
             sizes="(min-width: 1024px) 515px, 100vw"
             className="object-cover object-[48%_45%]"
           />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(rgb(0 0 0 / 29%), rgb(0 0 0 / 28%) 100%)",
+            }}
+          />
           <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-8 pb-8 pt-24 text-white">
             <p className="font-display text-3xl font-semibold">Alexis Ojo</p>
             <p className="mt-1 text-[12px] text-white/85">Founder, CEO &amp; CPO</p>
@@ -279,7 +270,7 @@ function Leadership() {
             height={30}
             className="h-[30px] w-full object-contain object-left"
           />
-          <blockquote className="font-display mt-8 text-pretty text-3xl font-medium italic leading-[1.55] text-[#2f3b3c] md:text-[36px]">
+          <blockquote className="mt-8 font-[Liberation_Serif,serif] text-pretty text-3xl font-medium italic leading-[1.55] text-[#000000] md:text-[36px]">
             &quot;Our goal isn&apos;t just to disrupt industries, but to become a
             trusted hub for bold, human-centred innovations..&quot;
           </blockquote>
@@ -290,7 +281,7 @@ function Leadership() {
           </p>
           <Link
             href="/about-us#team"
-            className="mt-9 inline-flex items-center gap-2 text-[12px] font-bold text-[#006989] underline-offset-4 hover:underline"
+            className="mt-9 inline-block font-[Liberation_Serif,serif] text-[12px] font-bold text-[#006989] underline underline-offset-4"
           >
             Meet the Leadership
             <Image
@@ -298,7 +289,7 @@ function Leadership() {
               alt=""
               width={9}
               height={9}
-              className="h-[9px] w-[9px]"
+              className="ml-2 inline h-[9px] w-[9px] align-middle"
             />
           </Link>
         </div>
@@ -371,7 +362,7 @@ function FinalCta() {
         </p>
         <Link
           href="/contact-us"
-          className="mt-8 inline-flex h-[68px] items-center justify-center rounded-xl bg-[#124343] px-12 text-[18px] font-extrabold uppercase tracking-[0.2em] text-white transition hover:bg-[#1b5656]"
+          className="mt-8 inline-flex h-[60px] items-center justify-center rounded-xl bg-[#124343] px-10 text-[16px] font-extrabold uppercase tracking-[0.2em] text-white transition hover:bg-[#1b5656]"
         >
           Get In Touch
         </Link>
@@ -380,56 +371,9 @@ function FinalCta() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#f1f4f7] px-5 text-[#3f484d] md:px-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-14 px-0 py-16 md:flex-row md:px-8">
-        <div className="max-w-[384px]">
-          <Link href="/" className="relative block h-[33px] w-[125px]">
-            <Image
-              src="/figma-assets/logo-word-b.svg"
-              alt="Ojoosco"
-              fill
-              className="object-contain"
-            />
-          </Link>
-          <p className="mt-8 max-w-[340px] text-[16px] leading-[1.65]">
-            Building a future where technology is a natural extension of human
-            intent and empathy.
-          </p>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-3 md:gap-16">
-          {footerGroups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#005069]">
-                {group.title}
-              </h3>
-              <ul className="mt-5 space-y-3 text-[16px]">
-                {group.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="transition hover:text-[#005069]">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <FooterSocialLinks />
-
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center border-t border-[#e6e6fa] py-6 pb-8 text-center text-[16px] text-[#5f5e5e]/70">
-        <p>&copy; 2026 Ojoosco Ltd Ltd. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
-
 function Placeholder({ title }: { title: string }) {
   return (
-    <div className="flex min-h-[157px] flex-col items-center justify-center border border-dashed border-[#cbd1d4] bg-[#f6f7f8] text-center text-[#b1b8bb]">
+    <div className="flex min-h-[157px] flex-col items-center justify-center border border-dashed border-[#cbd1d4] bg-[#F8F9FA] text-center text-[#b1b8bb] rounded-[4px]">
       <LockIcon />
       <p className="mt-4 text-[11px] font-extrabold uppercase tracking-[0.22em]">
         {title}

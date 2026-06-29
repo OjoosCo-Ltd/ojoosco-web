@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-manrope);
   --font-display: var(--font-be-vietnam);
+  --font-inter: var(--font-inter);
 }
 
 html,
@@ -27,7 +28,7 @@ body {
 }
 
 .hero-field {
-  background: #124343;
+  background-color: #124343;
 }
 
 .phone-stage img {
