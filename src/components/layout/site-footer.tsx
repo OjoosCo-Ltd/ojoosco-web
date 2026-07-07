@@ -44,7 +44,9 @@ export function SiteFooter() {
         {socialLinks.map((social) => (
           <a
             key={social.label}
-            href="#"
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={social.label}
             className="flex size-10 items-center justify-center rounded-full bg-[#005069]/[0.08] transition hover:bg-[#005069]/15"
           >

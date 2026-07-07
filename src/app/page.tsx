@@ -87,22 +87,22 @@ function Hero() {
     >
       <SiteHeader variant="landing" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center pt-24 text-center md:pt-28">
-        <p className="text-[11px] font-bold uppercase tracking-[0.36em] text-white/70">
-          Est. 2026 London
+      <div className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center px-4 pt-24 text-center md:px-0 md:pt-28">
+        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 md:text-[11px] md:tracking-[0.36em]">
+          Est. 2025 London
         </p>
-        <h1 className="font-display max-w-[900px] text-balance text-5xl font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[72px]">
+        <h1 className="font-display max-w-[280px] text-balance text-[34px] font-semibold leading-[1.05] tracking-[-0.02em] text-white md:max-w-[900px] md:text-[72px] md:leading-[1.08]">
           Where Innovation Meets{" "}
           <br className="hidden md:block" />
           Humanity
         </h1>
-        <p className="mt-7 max-w-[746px] text-pretty text-base leading-8 text-white/72 md:text-xl">
+        <p className="mt-4 max-w-[268px] text-pretty text-[13px] leading-[1.5] text-white/72 md:mt-7 md:max-w-[746px] md:text-xl md:leading-8">
           Built with precision. Designed for people. Creating digital
           experiences that make connection feel real again.
         </p>
         <Link
           href="/ventures"
-          className="mt-7 inline-flex h-[52px] items-center justify-center rounded-lg bg-[#181C1E] px-8 font-sans text-[12px] font-bold uppercase tracking-[0.22em] text-white shadow-[0_18px_36px_rgba(0,0,0,0.18)] transition hover:bg-[#23282b] focus:outline-none focus:ring-2 focus:ring-[#98ff98]"
+          className="mt-5 inline-flex h-11 items-center justify-center rounded-lg bg-[#181C1E] px-6 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-[0_18px_36px_rgba(0,0,0,0.18)] transition hover:bg-[#23282b] focus:outline-none focus:ring-2 focus:ring-[#98ff98] md:mt-7 md:h-[52px] md:px-8 md:text-[12px] md:tracking-[0.22em]"
         >
           Explore Our Ventures
         </Link>
