@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Ventures | Ojoosco",
@@ -45,7 +46,7 @@ function Hero() {
       <SiteHeader variant="inner" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:pt-[120px] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="max-w-[720px] lg:max-w-none">
+        <Reveal className="max-w-[720px] lg:max-w-none">
           <h1 className="font-display text-[46px] font-semibold leading-[1.12] tracking-[0] text-[#191c1e] md:text-[70px] lg:whitespace-nowrap">
             Building the Future{" "}
             <br className="hidden md:block" />
@@ -65,9 +66,12 @@ function Hero() {
             Explore Xparience
             <span aria-hidden="true">-&gt;</span>
           </Link>
-        </div>
+        </Reveal>
 
-        <div className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-full border border-white/20 bg-white/40 p-px shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md lg:mr-0">
+        <Reveal
+          delay={150}
+          className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-full border border-white/20 bg-white/40 p-px shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md lg:mr-0"
+        >
           <Image
             src="/figma-assets/ventures/hero-orb.png"
             alt="Glass orb with warm light trails"
@@ -77,7 +81,7 @@ function Hero() {
             className="rounded-full object-cover"
           />
           <div className="absolute inset-0 rounded-full bg-gradient-to-t from-[#f7f9fd]/40 to-transparent" />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -88,7 +92,7 @@ function Portfolio() {
   return (
     <section id="xparience" className="bg-white px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto max-w-[1216px]">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1fr_1fr] lg:gap-16">
+        <Reveal className="grid gap-10 lg:grid-cols-[0.9fr_1fr_1fr] lg:gap-16">
           <div>
             <p className="text-[12px] font-medium uppercase leading-none tracking-[0.2em] text-[#005068]">
               The Portfolio
@@ -109,9 +113,12 @@ function Portfolio() {
             testament to our commitment to clarity, accessibility, and profound
             impact.
           </p>
-        </div>
+        </Reveal>
 
-        <article className="mt-20 overflow-hidden rounded-[40px] border border-white/20 bg-white/40 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md md:p-16">
+        <Reveal
+          as="article"
+          className="mt-20 overflow-hidden rounded-[40px] border border-white/20 bg-white/40 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md md:p-16"
+        >
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[520px]">
               <div className="flex flex-wrap items-center gap-4">
@@ -149,7 +156,7 @@ function Portfolio() {
 
             <FeaturedMockup />
           </div>
-        </article>
+        </Reveal>
       </div>
     </section>
   );
@@ -193,7 +200,7 @@ function Empathy() {
   return (
     <section id="empathy" className="bg-[#f7f9fb] px-5 py-20 md:px-20 md:py-[110px]">
       <div className="mx-auto grid max-w-[1216px] items-center gap-14 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
-        <div>
+        <Reveal>
           <h2 className="text-[30px] font-semibold leading-[1.35] tracking-[0] text-[#191c1e] md:text-[34px]">
             Technology With Empathy
           </h2>
@@ -214,9 +221,9 @@ function Empathy() {
               </article>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="relative mx-auto w-full max-w-[488px]">
+        <Reveal delay={150} className="relative mx-auto w-full max-w-[488px]">
           <div className="absolute -bottom-10 -left-10 size-48 rounded-full bg-[#ffdcbf]/30 blur-[32px]" />
           <div className="relative aspect-square overflow-hidden rounded-[44px] border border-white/20 bg-white/40 p-4 backdrop-blur-md">
             <div className="relative h-full overflow-hidden rounded-[32px]">
@@ -229,7 +236,7 @@ function Empathy() {
               />
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -239,7 +246,7 @@ function ClosingCta() {
   return (
     <section className="relative overflow-hidden bg-[#005068] px-5 py-20 text-center md:px-20 md:py-[120px]">
       <div className="absolute -right-[400px] -top-[400px] size-[800px] rounded-full bg-[#006988]/20 blur-[70px]" />
-      <div className="relative mx-auto max-w-[900px]">
+      <Reveal className="relative mx-auto max-w-[900px]">
         <h2 className="font-display text-balance text-[30px] font-medium leading-[1.3] tracking-[0] text-white md:text-[32px]">
           Partner With the Future of Human-Centred Innovation
         </h2>
@@ -261,7 +268,7 @@ function ClosingCta() {
             Contact Us
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
