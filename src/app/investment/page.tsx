@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Investment | Ojoosco",
@@ -117,7 +118,7 @@ function Hero() {
       <SiteHeader variant="inner" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:px-8 md:pt-[120px] lg:grid-cols-[7fr_5fr] lg:gap-8">
-        <div className="max-w-[720px] pb-0 lg:pb-16">
+        <Reveal className="max-w-[720px] pb-0 lg:pb-16">
           <h1 className="font-display text-[44px] font-semibold leading-[1.1] tracking-[0] text-[#005068] md:text-[70px] lg:whitespace-nowrap">
             Investing in the{" "}
             <br className="hidden md:block" />
@@ -149,9 +150,11 @@ function Hero() {
               Contact Us
             </Link>
           </div>
-        </div>
+        </Reveal>
 
-        <HeroInvestorCard />
+        <Reveal delay={150}>
+          <HeroInvestorCard />
+        </Reveal>
       </div>
     </section>
   );
@@ -220,7 +223,7 @@ function Metric({
 function FundingOverview() {
   return (
     <section className="bg-[#f2f4f7] px-5 py-20 md:px-20 md:py-[120px]">
-      <div className="mx-auto max-w-[1280px] px-0 text-center md:px-8">
+      <Reveal className="mx-auto max-w-[1280px] px-0 text-center md:px-8">
         <p className="text-[12px] font-medium uppercase leading-none tracking-[0.1em] text-[#47626f]">
           Capital Raise
         </p>
@@ -231,7 +234,7 @@ function FundingOverview() {
           We are raising &pound;950,000 in equity investment to accelerate
           development, grow the team, and bring Xparience to market.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -240,7 +243,7 @@ function Opportunity() {
   return (
     <section className="overflow-hidden bg-[#f8f9fa] px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-8">
-        <div className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-[24px] lg:mx-0">
+        <Reveal className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-[24px] lg:mx-0">
           <Image
             src="/figma-assets/investment/market-insight.png"
             alt="Market growth chart"
@@ -248,9 +251,9 @@ function Opportunity() {
             sizes="(min-width: 1024px) 488px, 90vw"
             className="object-cover"
           />
-        </div>
+        </Reveal>
 
-        <div className="max-w-[740px] lg:pl-8">
+        <Reveal delay={150} className="max-w-[740px] lg:pl-8">
           <h2 className="font-display text-[30px] font-medium leading-[1.3] tracking-[0] text-[#005068] md:text-[32px]">
             The Opportunity
           </h2>
@@ -281,7 +284,7 @@ function Opportunity() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -291,7 +294,7 @@ function StrategicDeployment() {
   return (
     <section className="bg-[#3f484d] px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto max-w-[1280px] md:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-[576px]">
             <h2 className="font-display text-[30px] font-medium leading-[1.3] tracking-[0] text-[#e6e6fa] md:text-[32px]">
               Strategic Deployment
@@ -304,12 +307,14 @@ function StrategicDeployment() {
           <p className="text-[12px] font-medium uppercase leading-none tracking-[0.1em] text-white">
             Use of Funds
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-16 grid auto-rows-[minmax(220px,auto)] gap-6 lg:grid-cols-12 lg:grid-rows-2">
-          {deploymentCards.map((card) => (
-            <article
+          {deploymentCards.map((card, index) => (
+            <Reveal
+              as="article"
               key={card.title}
+              delay={index * 100}
               className={`flex min-h-[240px] flex-col justify-end rounded-[24px] border border-white/30 bg-[#e6e6fa] p-8 shadow-[0_1px_2px_rgba(0,0,0,0.05)] backdrop-blur-md md:p-10 ${card.className}`}
             >
               <DeploymentIcon
@@ -322,7 +327,7 @@ function StrategicDeployment() {
               <p className="mt-3 max-w-[640px] text-[15px] leading-[1.6] text-[#191c1e]/80 md:text-[16px]">
                 {card.body}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -334,7 +339,7 @@ function WhyInvest() {
   return (
     <section className="bg-[#f7f9fd] px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[408px_1fr] lg:gap-8">
-        <div className="max-w-[408px]">
+        <Reveal className="max-w-[408px]">
           <h2 className="font-display text-[36px] font-semibold leading-[1.2] tracking-[0] text-[#005068] md:text-[40px]">
             Why Invest in Xparience
           </h2>
@@ -343,11 +348,11 @@ function WhyInvest() {
             A unique opportunity to shape the future of digital human
             interaction in a multi-billion pound market.
           </p>
-        </div>
+        </Reveal>
 
         <div className="space-y-12">
           {investmentReasons.map((reason) => (
-            <article key={reason.number}>
+            <Reveal as="article" key={reason.number}>
               <div className="grid gap-5 sm:grid-cols-[22px_1fr] sm:gap-8">
                 <p className="font-display text-[16px] leading-6 text-[#005068]/20">
                   {reason.number}
@@ -362,7 +367,7 @@ function WhyInvest() {
                 </div>
               </div>
               <div className="mt-12 h-px w-[316px] max-w-full bg-[#bfc8ce]" />
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -374,7 +379,7 @@ function VisionBand() {
   return (
     <section className="relative overflow-hidden bg-[#005068] px-5 py-20 md:px-20 md:py-[120px]">
       <div className="absolute right-[-400px] top-[-400px] size-[800px] rounded-full bg-white/5 blur-[60px]" />
-      <div className="relative mx-auto max-w-[1280px] px-0 text-center md:px-8">
+      <Reveal className="relative mx-auto max-w-[1280px] px-0 text-center md:px-8">
         <h2 className="font-display text-[28px] font-semibold leading-none tracking-[0] text-white md:text-[32px]">
           Building Technology That Feels More Human
         </h2>
@@ -384,7 +389,7 @@ function VisionBand() {
           broader vision to build emotionally intelligent digital products
           centred around meaningful human experiences.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -393,7 +398,7 @@ function FinalCta() {
   return (
     <section className="relative overflow-hidden bg-white px-5 py-20 md:px-20 md:py-24">
       <div className="absolute right-[-400px] top-[-400px] size-[800px] rounded-full bg-white/5 blur-[60px]" />
-      <div className="relative mx-auto max-w-[917px] overflow-hidden rounded-[40px] border border-white/30 bg-white/40 px-6 py-20 text-center shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md md:rounded-[64px] md:px-8 md:pb-[161px] md:pt-[160px]">
+      <Reveal className="relative mx-auto max-w-[917px] overflow-hidden rounded-[40px] border border-white/30 bg-white/40 px-6 py-20 text-center shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md md:rounded-[64px] md:px-8 md:pb-[161px] md:pt-[160px]">
         <div className="absolute bottom-0 right-0 size-32 rounded-full bg-[#005068]/10 blur-[20px]" />
         <div className="absolute left-0 top-0 size-32 rounded-full bg-[#6d3d00]/10 blur-[20px]" />
         <div className="relative">
@@ -418,7 +423,7 @@ function FinalCta() {
             </Link>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

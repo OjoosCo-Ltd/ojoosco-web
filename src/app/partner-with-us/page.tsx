@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 import { ConversationForm } from "./conversation-form";
 
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ function Hero() {
       <SiteHeader variant="inner" />
 
       <div className="relative mx-auto mt-[120px] grid max-w-[1280px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div>
+        <Reveal>
           <p className="inline-flex rounded-full bg-[#cae7f7] px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-[#4d6876]">
             Global Partnerships
           </p>
@@ -79,9 +80,12 @@ function Hero() {
               Explore Our Ventures
             </Link>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="relative justify-self-center lg:justify-self-end">
+        <Reveal
+          delay={150}
+          className="relative justify-self-center lg:justify-self-end"
+        >
           <div className="absolute inset-[-30px] rotate-3 rounded-[64px] bg-gradient-to-br from-[#005068]/10 to-transparent blur-[20px]" />
           <div className="relative aspect-[24/25] w-[min(576px,90vw)] overflow-hidden rounded-[48px] shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
             <Image
@@ -93,7 +97,7 @@ function Hero() {
               className="object-cover"
             />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -104,15 +108,19 @@ function Partnerships() {
   return (
     <section id="partnerships" className="bg-[#f2f4f7] px-5 py-20 md:px-20">
       <div className="mx-auto max-w-[1280px] px-0 md:px-8">
-        <h2 className="font-display text-[32px] font-medium tracking-[-0.01em] text-[#191c1e]">
-          Partnership Opportunities
-        </h2>
-        <div className="mt-4 h-1 w-20 rounded-full bg-[#005068]" />
+        <Reveal>
+          <h2 className="font-display text-[32px] font-medium tracking-[-0.01em] text-[#191c1e]">
+            Partnership Opportunities
+          </h2>
+          <div className="mt-4 h-1 w-20 rounded-full bg-[#005068]" />
+        </Reveal>
 
         <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-          {partnerCards.map((card) => (
-            <article
+          {partnerCards.map((card, index) => (
+            <Reveal
+              as="article"
               key={card.title}
+              delay={index * 100}
               className="flex min-h-[360px] flex-col justify-between rounded-[24px] border border-white/20 bg-white/40 p-8 shadow-[0_18px_50px_rgba(25,28,30,0.035)] backdrop-blur-md"
             >
               <div>
@@ -131,7 +139,7 @@ function Partnerships() {
                 Learn More
                 <span aria-hidden="true">-&gt;</span>
               </a>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -143,7 +151,7 @@ function WhyOjoosco() {
   return (
     <section className="bg-white px-5 py-24 md:px-20">
       <div className="mx-auto grid max-w-[1280px] items-center gap-16 lg:grid-cols-[0.75fr_1.1fr]">
-        <div className="max-w-[470px] md:pl-8 lg:pl-0">
+        <Reveal className="max-w-[470px] md:pl-8 lg:pl-0">
           <h2 className="font-display text-[32px] font-medium tracking-[-0.01em]">
             Why Ojoosco Ltd
           </h2>
@@ -165,9 +173,12 @@ function WhyOjoosco() {
               body="Cross-platform integration across health, finance, and social tech."
             />
           </div>
-        </div>
+        </Reveal>
 
-        <div className="grid max-w-[683px] grid-cols-1 gap-4 sm:grid-cols-2">
+        <Reveal
+          delay={150}
+          className="grid max-w-[683px] grid-cols-1 gap-4 sm:grid-cols-2"
+        >
           <div className="space-y-4 pt-0 sm:pt-12">
             <ImageTile
               title="Visionary growth"
@@ -212,7 +223,7 @@ function WhyOjoosco() {
               className="h-[320px]"
             />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -222,14 +233,18 @@ function Conversation() {
   return (
     <section id="contact" className="bg-[#e8f0f3] px-5 py-20 md:py-24">
       <div className="mx-auto max-w-[768px] text-center">
-        <h2 className="font-display text-[32px] font-medium tracking-[-0.01em]">
-          Start the Conversation
-        </h2>
-        <p className="mt-4 text-[16px] text-[#3f484d]">
-          Join us in shaping the next generation of digital experiences.
-        </p>
+        <Reveal>
+          <h2 className="font-display text-[32px] font-medium tracking-[-0.01em]">
+            Start the Conversation
+          </h2>
+          <p className="mt-4 text-[16px] text-[#3f484d]">
+            Join us in shaping the next generation of digital experiences.
+          </p>
+        </Reveal>
 
-        <ConversationForm />
+        <Reveal delay={120}>
+          <ConversationForm />
+        </Reveal>
       </div>
     </section>
   );
@@ -238,7 +253,7 @@ function Conversation() {
 function FeaturedVenture() {
   return (
     <section className="bg-white px-5 py-24 md:px-20">
-      <div className="relative mx-auto grid max-w-[1216px] items-center gap-12 overflow-hidden rounded-[32px] bg-[#2a3030] px-8 py-14 text-white md:rounded-[48px] md:px-24 md:py-24 lg:grid-cols-2">
+      <Reveal className="relative mx-auto grid max-w-[1216px] items-center gap-12 overflow-hidden rounded-[32px] bg-[#2a3030] px-8 py-14 text-white md:rounded-[48px] md:px-24 md:py-24 lg:grid-cols-2">
         <div className="absolute right-0 top-0 size-96 rounded-full bg-[#005068]/35 blur-[80px]" />
         <div className="relative">
           <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-[#98ff98]">
@@ -279,7 +294,7 @@ function FeaturedVenture() {
             </div>
           </div> */}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -290,7 +305,7 @@ function ClosingCta() {
       <div className="absolute right-[-400px] top-[-400px] size-[800px] rounded-full bg-white/5 blur-[60px]" />
       <div className="relative mx-auto max-w-[1280px] py-12">
         <div className="absolute left-1/2 top-0 size-[800px] -translate-x-1/2 rounded-full bg-[#cae7f7]/10 opacity-40 blur-[60px]" />
-        <div className="relative">
+        <Reveal className="relative">
           <h2 className="font-display text-balance text-4xl font-semibold leading-[1.15] tracking-[-0.04em] md:text-[48px]">
             Where Innovation Meets Humanity
           </h2>
@@ -312,7 +327,7 @@ function ClosingCta() {
               Explore Ventures
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
