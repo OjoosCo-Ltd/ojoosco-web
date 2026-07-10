@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 import { PitchDeckForm } from "./pitch-deck-form";
 
 export const metadata: Metadata = {
@@ -82,7 +83,7 @@ function Hero() {
       <div className="absolute right-[-260px] top-[110px] size-[760px] rounded-full bg-[#f3f7fb] blur-[18px]" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:pt-[132px] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="max-w-[660px]">
+        <Reveal className="max-w-[660px]">
           <p className="inline-flex rounded-full bg-[#d9eff8] px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#006989]">
             Opportunities
           </p>
@@ -108,9 +109,11 @@ function Hero() {
               Get In Touch
             </Link>
           </div>
-        </div>
+        </Reveal>
 
-        <HeroVisual />
+        <Reveal delay={150}>
+          <HeroVisual />
+        </Reveal>
       </div>
     </section>
   );
@@ -199,7 +202,7 @@ function GrowthChannels() {
   return (
     <section id="opportunities" className="bg-[#f3f6f8] px-5 py-20 md:px-20 md:py-[94px]">
       <div className="mx-auto max-w-[1216px]">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.42fr]">
+        <Reveal className="grid gap-8 lg:grid-cols-[1fr_0.42fr]">
           <div>
             <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#006989]">
               Growth Channels
@@ -212,12 +215,14 @@ function GrowthChannels() {
             We are looking for strategic partners who share our vision for a
             more human digital future.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-          {opportunityCards.map((card) => (
-            <article
+          {opportunityCards.map((card, index) => (
+            <Reveal
+              as="article"
               key={card.title}
+              delay={index * 100}
               className="min-h-[286px] rounded-[18px] bg-[#e9edf1] p-8 shadow-[0_18px_40px_rgba(25,28,30,0.03)]"
             >
               <OpportunityIcon name={card.icon} />
@@ -227,7 +232,7 @@ function GrowthChannels() {
               <p className="mt-5 text-[13px] leading-[1.65] text-[#4e5b61]">
                 {card.body}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -239,7 +244,7 @@ function FlagshipVenture() {
   return (
     <section id="xparience" className="bg-white px-5 py-20 md:px-20 md:py-[96px]">
       <div className="mx-auto grid max-w-[1216px] items-center gap-16 lg:grid-cols-[0.96fr_1fr]">
-        <div className="relative mx-auto w-full max-w-[560px]">
+        <Reveal className="relative mx-auto w-full max-w-[560px]">
           <div className="relative aspect-[1.05] overflow-visible rounded-[30px] bg-[#e8eff2] p-3 shadow-[0_20px_55px_rgba(25,28,30,0.08)]">
             <div className="relative h-full overflow-hidden rounded-[23px]">
               <Image
@@ -257,9 +262,9 @@ function FlagshipVenture() {
               Live Preview Available
             </span>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="max-w-[560px] lg:pl-10">
+        <Reveal delay={150} className="max-w-[560px] lg:pl-10">
           <p className="inline-flex items-center rounded-full bg-[#006989] px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#98ff98]">
             <span className="mr-2 size-2 rounded-full bg-[#98ff98]" />
             Flagship Venture
@@ -296,7 +301,7 @@ function FlagshipVenture() {
               Learn More
             </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -306,14 +311,18 @@ function InvestmentHighlights() {
   return (
     <section id="investment-highlights" className="bg-[#151b1c] px-5 py-20 text-white md:px-20 md:py-[104px]">
       <div className="mx-auto max-w-[1216px]">
-        <h2 className="font-display text-center text-[32px] font-medium tracking-[0] text-white/88 md:text-[38px]">
-          Investment Highlights
-        </h2>
+        <Reveal>
+          <h2 className="font-display text-center text-[32px] font-medium tracking-[0] text-white/88 md:text-[38px]">
+            Investment Highlights
+          </h2>
+        </Reveal>
 
         <div className="mt-20 grid gap-y-14 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20">
-          {highlights.map((item) => (
-            <article
+          {highlights.map((item, index) => (
+            <Reveal
+              as="article"
               key={item.number}
+              delay={(index % 3) * 120}
               className="border-l border-[#2f3738] pl-8 pr-8 lg:min-h-[250px]"
             >
               <p className="text-[58px] font-extrabold leading-none text-[#007fa0] md:text-[66px]">
@@ -325,17 +334,20 @@ function InvestmentHighlights() {
               <p className="mt-5 max-w-[275px] text-[13px] leading-[1.7] text-white/52">
                 {item.body}
               </p>
-            </article>
+            </Reveal>
           ))}
 
-          <div className="flex min-h-[250px] items-center border-l border-[#2f3738] pl-8 pr-8">
+          <Reveal
+            delay={240}
+            className="flex min-h-[250px] items-center border-l border-[#2f3738] pl-8 pr-8"
+          >
             <a
               href="#pitch-deck"
               className="inline-flex h-[66px] items-center justify-center rounded-xl bg-[#007fa0] px-10 text-[12px] font-extrabold uppercase tracking-[0.18em] text-[#061215] transition hover:bg-[#1aa0c1]"
             >
               Get Full Stats
             </a>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -346,7 +358,7 @@ function PitchDeck() {
   return (
     <section id="pitch-deck" className="bg-[#f2f5f7] px-5 py-20 md:px-20 md:py-[94px]">
       <div className="mx-auto grid max-w-[1216px] items-center gap-14 lg:grid-cols-[0.72fr_1fr]">
-        <div>
+        <Reveal>
           <h2 className="font-display max-w-[410px] text-balance text-[34px] font-medium leading-[1.16] tracking-[0] text-[#252b2e] md:text-[42px]">
             Request Access to the Pitch Deck
           </h2>
@@ -366,9 +378,11 @@ function PitchDeck() {
               body="Review our detailed financial model and project roadmap in real-time."
             />
           </div>
-        </div>
+        </Reveal>
 
-        <PitchDeckForm />
+        <Reveal delay={150}>
+          <PitchDeckForm />
+        </Reveal>
       </div>
     </section>
   );
@@ -385,7 +399,7 @@ function Philosophy() {
         className="object-cover opacity-[0.13]"
       />
       <div className="absolute inset-0 bg-white/72" />
-      <div className="relative mx-auto max-w-[780px]">
+      <Reveal className="relative mx-auto max-w-[780px]">
         <h2 className="font-display text-balance text-[34px] font-semibold leading-[1.2] tracking-[0] text-[#1f2528] md:text-[44px]">
           Technology Should Feel More Human
         </h2>
@@ -395,7 +409,7 @@ function Philosophy() {
           create meaningful experiences through thoughtful innovation and
           emotionally intelligent design.&quot;
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -403,7 +417,7 @@ function Philosophy() {
 function ClosingCta() {
   return (
     <section id="contact" className="bg-[#dfe5e9] px-5 py-20 text-center md:px-20 md:py-[86px]">
-      <div className="mx-auto max-w-[840px]">
+      <Reveal className="mx-auto max-w-[840px]">
         <h2 className="font-display text-balance text-[30px] font-medium leading-[1.25] tracking-[0] text-[#242b2e] md:text-[34px]">
           Partner With the Future of Human-Centred Innovation
         </h2>
@@ -421,7 +435,7 @@ function ClosingCta() {
             Contact Ojoosco Ltd
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
