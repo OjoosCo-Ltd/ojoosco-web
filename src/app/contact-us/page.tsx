@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ function Hero() {
       <SiteHeader variant="inner" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:pt-[120px] lg:grid-cols-[1fr_0.95fr]">
-        <div className="max-w-[690px]">
+        <Reveal className="max-w-[690px]">
           <p className="text-[12px] font-medium uppercase leading-none tracking-[0.1em] text-[#006989]">
             Connect With Us
           </p>
@@ -60,9 +61,12 @@ function Hero() {
             investment opportunity, media enquiry, or simply a conversation
             about the future of human-centred innovation.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="relative mx-auto h-[310px] w-full max-w-[560px] overflow-hidden rounded-bl-[24px] rounded-tl-[24px] opacity-80 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] md:h-[427px] lg:mr-0">
+        <Reveal
+          delay={150}
+          className="relative mx-auto h-[310px] w-full max-w-[560px] overflow-hidden rounded-bl-[24px] rounded-tl-[24px] opacity-80 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] md:h-[427px] lg:mr-0"
+        >
           <Image
             src="/figma-assets/contact/hero-support.png"
             alt="Support team members wearing headsets"
@@ -71,7 +75,7 @@ function Hero() {
             sizes="(min-width: 1024px) 590px, 90vw"
             className="object-cover"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -82,7 +86,7 @@ function ContactArea() {
   return (
     <section className="bg-[#f8f9fd] px-5 py-20 md:px-20">
       <div className="mx-auto grid max-w-[1100px] items-center gap-14 lg:grid-cols-[0.9fr_1fr] lg:gap-16">
-        <div className="max-w-[430px] lg:justify-self-end">
+        <Reveal className="max-w-[430px] lg:justify-self-end">
           <h2 className="font-display text-[32px] font-medium leading-[1.3] tracking-[0]">
             Start the Conversation
           </h2>
@@ -101,9 +105,11 @@ function ContactArea() {
               className="object-cover"
             />
           </div>
-        </div>
+        </Reveal>
 
-        <ContactForm />
+        <Reveal delay={150}>
+          <ContactForm />
+        </Reveal>
       </div>
     </section>
   );
@@ -113,17 +119,21 @@ function DirectChannels() {
   return (
     <section className="bg-[#f4f5f9] px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto max-w-[1280px] text-center">
-        <h2 className="font-display text-[32px] font-medium leading-[1.3] tracking-[0]">
-          Direct Channels
-        </h2>
-        <p className="mt-4 text-[16px] leading-[1.6] text-[#4a5568]">
-          Reach out to the specific department for faster response.
-        </p>
+        <Reveal>
+          <h2 className="font-display text-[32px] font-medium leading-[1.3] tracking-[0]">
+            Direct Channels
+          </h2>
+          <p className="mt-4 text-[16px] leading-[1.6] text-[#4a5568]">
+            Reach out to the specific department for faster response.
+          </p>
+        </Reveal>
 
         <div className="mt-16 grid gap-8 text-left lg:grid-cols-3">
-          {channels.map((channel) => (
-            <article
+          {channels.map((channel, index) => (
+            <Reveal
+              as="article"
               key={channel.title}
+              delay={index * 120}
               className="min-h-[278px] rounded-2xl border border-black/[0.05] bg-white/60 px-10 py-10 shadow-[0_1px_2px_rgba(0,0,0,0.05)] backdrop-blur-md"
             >
               <div className="flex size-12 items-center justify-center rounded-full bg-[#006989]/5 text-[#006989]">
@@ -141,7 +151,7 @@ function DirectChannels() {
               >
                 info@ojoosco.com
               </a>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactDOM from "react-dom";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 
 const pillarIconAssets = {
   product: {
@@ -87,7 +88,7 @@ function Hero() {
     >
       <SiteHeader variant="landing" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center px-4 pt-24 text-center md:px-0 md:pt-28">
+      <Reveal className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center px-4 pt-24 text-center md:px-0 md:pt-28">
         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 md:text-[11px] md:tracking-[0.36em]">
           Est. 2025 London
         </p>
@@ -106,7 +107,7 @@ function Hero() {
         >
           Explore Our Ventures
         </Link>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -115,13 +116,17 @@ function Pillars() {
   return (
     <section id="about" className="bg-[#F3F4F5] px-5 py-20">
       <div className="mx-auto max-w-[1280px]">
-        <h2 className="font-display text-center text-3xl font-semibold tracking-[-0.01em] text-[#124343] md:text-[40px]">
-          Our Core Pillars
-        </h2>
+        <Reveal>
+          <h2 className="font-display text-center text-3xl font-semibold tracking-[-0.01em] text-[#124343] md:text-[40px]">
+            Our Core Pillars
+          </h2>
+        </Reveal>
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {pillars.map((pillar) => (
-            <article
+          {pillars.map((pillar, index) => (
+            <Reveal
+              as="article"
               key={pillar.title}
+              delay={index * 120}
               className="min-h-[264px] border border-[#C0C8C7] bg-white px-10 py-10 rounded-[4px]"
             >
               <PillarIcon name={pillar.icon} />
@@ -131,7 +136,7 @@ function Pillars() {
               <p className="mt-5 max-w-[310px] text-[15px] leading-[1.8] text-[#6a7374]">
                 {pillar.body}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -143,14 +148,19 @@ function Ventures() {
   return (
     <section id="ventures" className="bg-[#F8F9FA] px-5 py-16 md:py-20">
       <div className="mx-auto max-w-[1280px]">
-        <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#006989]">
-          Portfolio
-        </p>
-        <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.01em] md:text-[40px]">
-          Active Ventures
-        </h2>
+        <Reveal>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#006989]">
+            Portfolio
+          </p>
+          <h2 className="font-display mt-3 text-3xl font-semibold tracking-[-0.01em] md:text-[40px]">
+            Active Ventures
+          </h2>
+        </Reveal>
 
-        <article className="mt-10 grid overflow-hidden bg-[#EDEEEF] lg:grid-cols-[1fr_0.96fr]">
+        <Reveal
+          as="article"
+          className="mt-10 grid overflow-hidden bg-[#EDEEEF] lg:grid-cols-[1fr_0.96fr]"
+        >
           <div className="flex min-h-[420px] flex-col justify-center px-8 py-14 md:px-16 lg:min-h-[660px]">
             <div className="flex items-center gap-4">
               <span className="rounded-[2px] bg-[#124343] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#ffffff]">
@@ -193,11 +203,15 @@ function Ventures() {
               className="h-auto w-full max-w-[552px] rounded-[32px]"
             />
           </div>
-        </article>
+        </Reveal>
 
         <div className="mt-8 grid gap-8 md:grid-cols-2">
-          <Placeholder title="Project Titan (Stealth)" />
-          <Placeholder title="Project Iris (R&D)" />
+          <Reveal>
+            <Placeholder title="Project Titan (Stealth)" />
+          </Reveal>
+          <Reveal delay={120}>
+            <Placeholder title="Project Iris (R&D)" />
+          </Reveal>
         </div>
       </div>
     </section>
@@ -207,7 +221,7 @@ function Ventures() {
 function Philosophy() {
   return (
     <section className="bg-[#124343] px-5 py-24 text-center text-white md:py-28">
-      <div className="mx-auto max-w-[900px]">
+      <Reveal className="mx-auto max-w-[900px]">
         <Image
           src="/figma-assets/landing/icons/philosophy-quote.png"
           alt=""
@@ -232,7 +246,7 @@ function Philosophy() {
         <p className="font-inter mt-8 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/72">
           - The Ojoosco Ltd Ethos
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -241,7 +255,10 @@ function Leadership() {
   return (
     <section className="bg-white px-5 py-20 md:py-24">
       <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[0.82fr_1fr] lg:gap-[140px]">
-        <figure className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-[#d9d3d0] md:min-h-[643px]">
+        <Reveal
+          as="figure"
+          className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-[#d9d3d0] md:min-h-[643px]"
+        >
           <Image
             src="/figma-assets/founder.jpg"
             alt="Alexis Ojo"
@@ -260,9 +277,9 @@ function Leadership() {
             <p className="font-display text-3xl font-semibold">Alexis Ojo</p>
             <p className="mt-1 text-[12px] text-white/85">Founder, CEO &amp; CPO</p>
           </figcaption>
-        </figure>
+        </Reveal>
 
-        <div className="max-w-[624px]">
+        <Reveal delay={150} className="max-w-[624px]">
           <Image
             src="/figma-assets/landing/icons/leadership-quote.png"
             alt=""
@@ -292,7 +309,7 @@ function Leadership() {
               className="ml-2 inline h-[9px] w-[9px] align-middle"
             />
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -302,7 +319,7 @@ function Investment() {
   return (
     <section id="investment" className="bg-[#eceeef] px-5 py-20 md:py-[120px]">
       <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[1fr_1.08fr]">
-        <div className="max-w-[540px] lg:pl-5">
+        <Reveal className="max-w-[540px] lg:pl-5">
           <h2 className="font-display text-balance text-3xl font-semibold leading-[1.15] tracking-[-0.02em] md:text-[42px]">
             Invest in Meaningful Innovation
           </h2>
@@ -325,9 +342,12 @@ function Investment() {
               Request Pitch Deck
             </a>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="rounded-[8px] border border-[#c0c8c7] bg-white p-8 shadow-[0_20px_40px_-15px_rgba(18,67,67,0.05)] md:p-12">
+        <Reveal
+          delay={150}
+          className="rounded-[8px] border border-[#c0c8c7] bg-white p-8 shadow-[0_20px_40px_-15px_rgba(18,67,67,0.05)] md:p-12"
+        >
           <dl className="space-y-8">
             {stats.map(([label, value], index) => (
               <div
@@ -343,7 +363,7 @@ function Investment() {
               </div>
             ))}
           </dl>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -352,7 +372,7 @@ function Investment() {
 function FinalCta() {
   return (
     <section id="contact" className="bg-[#f8f9fa] px-5 py-20 text-center md:py-24">
-      <div className="mx-auto max-w-[672px]">
+      <Reveal className="mx-auto max-w-[672px]">
         <h2 className="font-display text-balance text-4xl font-semibold leading-[1.2] tracking-[-0.02em] md:text-[48px]">
           Let&apos;s Build Something That Matters
         </h2>
@@ -366,7 +386,7 @@ function FinalCta() {
         >
           Get In Touch
         </Link>
-      </div>
+      </Reveal>
     </section>
   );
 }

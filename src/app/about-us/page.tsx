@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "About Us | Ojoosco",
@@ -87,7 +88,7 @@ function Hero() {
       <SiteHeader variant="inner" />
 
       <div className="relative mx-auto grid max-w-[1280px] items-center gap-14 pt-20 md:pt-[120px] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="max-w-[690px]">
+        <Reveal className="max-w-[690px]">
           <p className="text-[12px] font-extrabold uppercase leading-none tracking-[0.1em] text-[#005069]">
             Our Story
           </p>
@@ -100,9 +101,12 @@ function Hero() {
             organic warmth, Ojoosco Ltd is a visionary ecosystem dedicated to
             ventures that elevate the human experience through technology.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-xl bg-black shadow-[0_18px_40px_rgba(25,28,30,0.08)] lg:mr-0">
+        <Reveal
+          delay={150}
+          className="relative mx-auto aspect-square w-full max-w-[488px] overflow-hidden rounded-xl bg-black shadow-[0_18px_40px_rgba(25,28,30,0.08)] lg:mr-0"
+        >
           <Image
             src="/figma-assets/about/hero-philosophy.png"
             alt="Abstract architectural form"
@@ -111,7 +115,7 @@ function Hero() {
             sizes="(min-width: 1024px) 488px, 90vw"
             className="object-cover"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -122,7 +126,7 @@ function Story() {
   return (
     <section className="bg-[#e5edf1] px-5 py-16 md:px-20">
       <div className="mx-auto max-w-[1280px] px-0 md:px-8">
-        <div className="mx-auto max-w-[1216px] text-center">
+        <Reveal className="mx-auto max-w-[1216px] text-center">
           <h2 className="font-display text-[36px] font-semibold leading-[1.25] tracking-[0] text-[#191c1e] md:text-[48px]">
             Our Story
           </h2>
@@ -146,11 +150,11 @@ function Story() {
               thinking.
             </p>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-20 grid gap-12 md:grid-cols-2 md:gap-20">
-          {statements.map((item) => (
-            <article key={item.title}>
+          {statements.map((item, index) => (
+            <Reveal as="article" key={item.title} delay={index * 150}>
               <h3 className="font-display text-[28px] font-bold leading-[1.45] tracking-[0] text-[#181c1e] md:text-[32px]">
                 {item.title}
               </h3>
@@ -160,7 +164,7 @@ function Story() {
               <p className="mt-2 max-w-[592px] text-[16px] leading-[1.6] text-[#3f484d]">
                 {item.body}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -172,7 +176,7 @@ function Philosophy() {
   return (
     <section className="bg-white px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto grid max-w-[1280px] items-center gap-14 px-0 md:px-8 lg:grid-cols-[0.92fr_1fr] lg:gap-24">
-        <div className="relative aspect-square w-full max-w-[488px] overflow-hidden rounded-xl bg-[#e8eef2]">
+        <Reveal className="relative aspect-square w-full max-w-[488px] overflow-hidden rounded-xl bg-[#e8eef2]">
           <Image
             src="/figma-assets/about/philosophy.png"
             alt="A person looking across a futuristic city walkway"
@@ -180,9 +184,9 @@ function Philosophy() {
             sizes="(min-width: 1024px) 488px, 90vw"
             className="object-cover"
           />
-        </div>
+        </Reveal>
 
-        <div className="max-w-[610px]">
+        <Reveal delay={150} className="max-w-[610px]">
           <p className="text-[12px] font-medium uppercase leading-none tracking-[0.1em] text-[#005069]">
             Philosophy
           </p>
@@ -201,7 +205,7 @@ function Philosophy() {
               </article>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -211,7 +215,7 @@ function Team() {
   return (
     <section id="team" className="bg-[#f7f9fc] px-5 py-20 md:px-20 md:py-24">
       <div className="mx-auto max-w-[1280px] px-0 md:px-8">
-        <div className="max-w-[760px]">
+        <Reveal className="max-w-[760px]">
           <h2 className="font-display text-[34px] font-semibold leading-[1.25] tracking-[0] text-[#191c1e] md:text-[44px]">
             The Architects Behind the Vision
           </h2>
@@ -220,12 +224,14 @@ function Team() {
             products through Ojoosco Ltd, with a strong emphasis on quality,
             execution, and user experience.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-3">
-          {team.map((member) => (
-            <article
+          {team.map((member, index) => (
+            <Reveal
+              as="article"
               key={member.name}
+              delay={index * 120}
               className="rounded-[32px] bg-white p-6 text-center shadow-[0_1px_1px_rgba(0,0,0,0.05)]"
             >
               <div className="relative aspect-[1/1.18] overflow-hidden rounded-[24px] bg-[#eef1f4]">
@@ -250,7 +256,7 @@ function Team() {
               <p className="mx-auto mt-6 max-w-[360px] text-[15px] leading-[1.65] text-[#3f484d]">
                 {member.body}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -269,7 +275,7 @@ function FutureAmbitions() {
         className="object-cover opacity-30"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#f7f9fc] via-[#f7f9fc]/25 to-[#f7f9fc]" />
-      <div className="relative mx-auto max-w-[768px]">
+      <Reveal className="relative mx-auto max-w-[768px]">
         <p className="text-[12px] font-medium uppercase leading-none tracking-[0.1em] text-[#005069]">
           Future Ambitions
         </p>
@@ -296,7 +302,7 @@ function FutureAmbitions() {
             Explore Ventures
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
