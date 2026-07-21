@@ -139,12 +139,14 @@ function Portfolio() {
                 digital communities.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/ventures#xparience"
+                <a
+                  href="https://www.xparience.com/"
+                  target="_blank"
+                  rel="noopener"
                   className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-xl bg-[#005068] px-8 text-[12px] font-semibold uppercase tracking-[0.16em] text-white shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] transition hover:bg-[#0a617a] md:text-[16px]"
                 >
                   Visit Venture
-                </Link>
+                </a>
                 <Link
                   href="/ventures#empathy"
                   className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-xl border border-[#bfc8ce] px-8 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#191c1e] transition hover:bg-[#f4f7f8] md:text-[16px]"
