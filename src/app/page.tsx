@@ -57,7 +57,7 @@ const stats = [
 ];
 
 export default function Home() {
-  ReactDOM.preload("/figma-assets/landing/electric-orb-1.png", {
+  ReactDOM.preload("/figma-assets/landing/electric-orb-base.png", {
     as: "image",
     fetchPriority: "high",
   });
@@ -80,7 +80,7 @@ function Hero() {
     <section
       className="hero-field relative flex min-h-dvh overflow-hidden bg-[#124343] px-5 pb-16 pt-8 text-white"
       style={{
-        backgroundImage: "url(/figma-assets/landing/electric-orb-1.png)",
+        backgroundImage: "url(/figma-assets/landing/electric-orb-base.png)",
         backgroundSize: "cover",
         backgroundPosition: "top",
         backgroundRepeat: "no-repeat",
@@ -88,25 +88,43 @@ function Hero() {
     >
       <SiteHeader variant="landing" />
 
-      <Reveal className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center px-4 pt-24 text-center md:px-0 md:pt-28">
-        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 md:text-[11px] md:tracking-[0.36em]">
-          Est. 2025 London
-        </p>
-        <h1 className="font-display max-w-[280px] text-balance text-[34px] font-semibold leading-[1.05] tracking-[-0.02em] text-white md:max-w-[900px] md:text-[72px] md:leading-[1.08]">
-          Where Innovation Meets{" "}
-          <br className="hidden md:block" />
-          Humanity
-        </h1>
-        <p className="mt-4 max-w-[268px] text-pretty text-[13px] leading-[1.5] text-white/72 md:mt-7 md:max-w-[746px] md:text-xl md:leading-8">
-          Built with precision. Designed for people. Creating digital
-          experiences that make connection feel real again.
-        </p>
-        <Link
-          href="/ventures"
-          className="mt-5 inline-flex h-11 items-center justify-center rounded-lg bg-[#181C1E] px-6 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-[0_18px_36px_rgba(0,0,0,0.18)] transition hover:bg-[#23282b] focus:outline-none focus:ring-2 focus:ring-[#98ff98] md:mt-7 md:h-[52px] md:px-8 md:text-[12px] md:tracking-[0.22em]"
-        >
-          Explore Our Ventures
-        </Link>
+      <div aria-hidden className="hero-veins">
+        {[0, 1, 2, 3, 4].map((sector) => (
+          <Image
+            key={sector}
+            src="/figma-assets/landing/lightning-veins.png"
+            alt=""
+            width={2000}
+            height={2000}
+            priority={sector === 0}
+            loading="eager"
+            sizes="100vw"
+            className={`hero-veins-img hero-veins-s${sector}`}
+          />
+        ))}
+      </div>
+
+      <Reveal className="hero-copy relative z-10 mx-auto flex w-full max-w-[1240px] flex-col items-center justify-center px-4 pt-24 text-center md:px-0 md:pt-28">
+        <div className="hero-orb-center">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 md:text-[11px] md:tracking-[0.36em]">
+            Est. 2025 London
+          </p>
+          <h1 className="font-display max-w-[280px] text-balance text-[34px] font-semibold leading-[1.05] tracking-[-0.02em] text-white md:max-w-[900px] md:text-[72px] md:leading-[1.08]">
+            Where Innovation Meets{" "}
+            <br className="hidden md:block" />
+            Humanity
+          </h1>
+          <p className="mt-4 max-w-[268px] text-pretty text-[13px] leading-[1.5] text-white/72 md:mt-7 md:max-w-[min(746px,calc(var(--orb-d)*0.92))] md:text-xl md:leading-8">
+            Built with precision. Designed for people. Creating digital
+            experiences that make connection feel real again.
+          </p>
+          <Link
+            href="/ventures"
+            className="mt-5 inline-flex h-11 items-center justify-center rounded-lg bg-[#181C1E] px-6 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-[0_18px_36px_rgba(0,0,0,0.18)] transition hover:bg-[#23282b] focus:outline-none focus:ring-2 focus:ring-[#98ff98] md:mt-7 md:h-[52px] md:px-8 md:text-[12px] md:tracking-[0.22em]"
+          >
+            Explore Our Ventures
+          </Link>
+        </div>
       </Reveal>
     </section>
   );
@@ -178,8 +196,10 @@ function Ventures() {
               authentic human connection in a digital age. No algorithms, no
               endless scrolling - just meaningful interaction.
             </p>
-            <Link
-              href="/ventures#xparience"
+            <a
+              href="https://www.xparience.com/"
+              target="_blank"
+              rel="noopener"
               className="mt-8 inline-flex h-[52px] w-fit items-center gap-2 rounded-[12px] bg-[#124343] px-8 text-[16px] font-semibold uppercase tracking-[1.8px] text-white transition hover:bg-[#123f3f]"
             >
               View Venture
@@ -190,7 +210,7 @@ function Ventures() {
                 height={10}
                 className="h-2.5 w-[18px]"
               />
-            </Link>
+            </a>
           </div>
 
           <div className="flex min-h-[480px] items-center justify-center px-7 pb-12 lg:min-h-[660px] lg:px-16 lg:py-16">
