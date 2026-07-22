@@ -7,7 +7,7 @@ import { Reveal } from "@/components/reveal";
 export const metadata: Metadata = {
   title: "Investment | Ojoosco",
   description:
-    "Explore Ojoosco Ltd's investment opportunity for Xparience, a premium relationship and lifestyle platform.",
+    "Explore Ojoosco Ltd's investment opportunity for Xparience, a premium dating and lifestyle platform.",
 };
 
 const marketStats = [
@@ -133,7 +133,7 @@ function Hero() {
           <p className="mt-8 max-w-[672px] text-[16px] leading-[1.65] text-[#3f484d] md:text-[18px]">
             Ojoosco Ltd is building the next generation of emotionally
             intelligent digital experiences through Xparience - a premium
-            relationship and lifestyle platform designed around meaningful
+            dating and lifestyle platform designed around meaningful
             connection rather than addictive engagement.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">

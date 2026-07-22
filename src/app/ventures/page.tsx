@@ -126,7 +126,7 @@ function Portfolio() {
                   Flagship Venture
                 </span>
                 <span className="text-[12px] font-medium uppercase tracking-[0.1em] text-[#3f484d]">
-                  Relationship &amp; Experience Technology
+                  Dating &amp; Experience Technology
                 </span>
               </div>
               <h3 className="mt-8 text-[32px] font-medium leading-[1.3] tracking-[0]">
