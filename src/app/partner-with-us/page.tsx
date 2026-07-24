@@ -264,7 +264,7 @@ function FeaturedVenture() {
           </h2>
           <p className="mt-6 max-w-[480px] text-[18px] leading-[1.6] text-white/62">
             Xparience is redefining modern connection through emotionally
-            intelligent experiences designed around intentional relationships
+            intelligent experiences designed around intentional dating
             and meaningful interaction.
           </p>
           <Link
